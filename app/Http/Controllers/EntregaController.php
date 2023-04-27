@@ -29,7 +29,10 @@ class EntregaController extends Controller
         $entrega-> fecha_entrega = $validateData['fecha_entrega'];
         $entrega-> hora_entrega = $validateData['hora_entrega'];
         $entrega-> nombre_encargado = $validateData['nombre_encargado'];
-
+        
+        
+        $foto = $request->file('foto_entrega');
+        $entrega->foto; 
 
      
 

@@ -27,7 +27,7 @@
   <div id="foto"></div>
       
       --}}
-    <button type="button" class="btn btn-success" id="enviar-equipos">Enviar equipos</button>
+    <button type="submit" class="btn btn-success" id="enviar-equipos">Enviar equipos</button>
   </div>
 @endsection
 

@@ -19,7 +19,7 @@ use App\Http\Controllers\EntrgasDetalleController;
 
 Route::get('/', function () {
     return view('principal');
-});
+})->name('home');
 
 
 Route::get('/prueba', function () {
