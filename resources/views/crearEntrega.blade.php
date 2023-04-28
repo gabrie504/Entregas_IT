@@ -7,7 +7,8 @@
 @endsection
 
 @section('content')
-    <form method="POST" action="{{route('entrega.crear')}}">
+    {{-- <form method="POST" action="{{secure_url(route('entrega.crear'))}}"> --}}
+        <form method="POST" action="{{secure_url('/entrega')}}">
         @csrf
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Fecha</span>

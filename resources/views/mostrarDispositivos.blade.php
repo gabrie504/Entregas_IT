@@ -7,7 +7,7 @@
 @section('content')
   <div class="container">
     <h1>Agregar equipos</h1>
-    <form action="{{ route('dispositivos.store') }}" method="POST">
+    <form action="{{ secure_url('/dispositivo') }}" method="POST">
      
       <div class="form-group">
         <label for="nombre">Nombre del equipo:</label>
@@ -67,7 +67,7 @@
   
       $('#enviar-equipos').click(function() {
   $.ajax({
-    url: '{{route("dispositivos.store")}}',
+    url: '{{secure_url("/dispositivo")}}',
     type: 'POST',
     headers: {
       'X-CSRF-TOKEN':'{{ csrf_token() }}'

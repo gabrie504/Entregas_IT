@@ -13,7 +13,7 @@
     <nav>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{secure_url(route('home'))}}">Home</a>
           </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Entregas</a>

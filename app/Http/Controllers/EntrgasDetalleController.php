@@ -56,7 +56,7 @@ class EntrgasDetalleController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Equipos agregados correctamente']);
+        return redirect()->route('firma.mostrar');
     }
 }
 
