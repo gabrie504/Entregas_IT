@@ -78,6 +78,7 @@
       console.log(response.message);
       equipos = []; // Limpiar la matriz de equipos
       mostrarEquipos(); // Actualizar la vista
+      window.location.href = '{{ secure_url("/firma") }}';
     },
     error: function(xhr, status, error) {
       console.log('Error al enviar equipos: ' + error);

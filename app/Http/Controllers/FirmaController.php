@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Entrega;
 use App\Models\Articulo;
 use App\Models\DetalleArticulo;
 
 class FirmaController extends Controller
 {
-        public function index(){
-
-            $ultimaEntrega = Entrega::latest()->first();
-            $entrega = Entrega::find($ultimaEntrega);
-
-            $detalles = DetalleArticulo::where('id_entrega', $entrega->id_entrega)
-                        ->orderBy('created_at', 'desc')
-                        ->get();
-
-            $articulos = collect();
-
-            foreach ($detalles as $detalle) {
-                $articulo = Articulo::find($detalle->id_articulo);
-                $articulo->descripcion = $detalle->descripcion_articulo;
-                $articulos->push($articulo);
-            }
-
-            return view('firma', compact('entrega', 'articulos', 'detalles'));
-
-
-        }
+    public function index(){
+        $ultimaEntrega = Entrega::max('id_entrega');
+        
+        $entregas = Entrega::select('e.fecha_entrega', 'e.hora_entrega', 'da.descripcion_articulo', 'a.nombre_articulo')
+            ->from('Entregas as e')
+            ->join('DetalleArticulos as da', 'e.id_entrega', '=', 'da.id_entrega')
+            ->join('Articulos as a', 'da.id_articulo', '=', 'a.id_articulo')
+            ->where('e.id_entrega', '=', $ultimaEntrega)
+            ->distinct()
+            ->get();
+        
+        return view('firma', [
+            'fecha' => $entregas[0]->fecha_entrega,
+            'hora' => $entregas[0]->hora_entrega,
+            'equipos' => $entregas
+        ]);
+    }
 }
