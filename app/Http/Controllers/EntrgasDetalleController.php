@@ -56,7 +56,7 @@ class EntrgasDetalleController extends Controller
             }
         }
 
-        return redirect()->route('firma.mostrar');
+        return response()->json(['msj' => 'se guardo']);
     }
 }
 

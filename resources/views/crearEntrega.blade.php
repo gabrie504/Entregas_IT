@@ -28,9 +28,12 @@
             <div>
                 <button type="button" class="btn btn-primary" id="tomar-foto-btn">Tomar Foto</button>
             </div>
-            <input type="file" class="form-control" id="foto_entrega" name="foto_entrega" accept="image/*" style="display: none;">
+            <input type="file" class="form-control" id="foto_entrega" name="foto_entrega" accept="image/*">
+
             <div id="preview-foto" style="display: none;">
                 <img id="preview-img" src="#" alt="Foto de entrega" style="max-width: 200px;">
+
+
                 <div>
                     <button type="button" class="btn btn-danger" id="eliminar-foto-btn">Eliminar Foto</button>
                 </div>

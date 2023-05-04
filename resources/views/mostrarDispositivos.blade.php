@@ -38,6 +38,7 @@
 
   <script>
     $(document).ready(function() {
+      console.log(window.location.origin + '/firma')
       var equipos = [];
         //******************************************************************************
 
@@ -67,7 +68,8 @@
   
       $('#enviar-equipos').click(function() {
   $.ajax({
-    url: '{{secure_url("/dispositivo")}}',
+  
+    url: '{{ secure_url("/dispositivo") }}',
     type: 'POST',
     headers: {
       'X-CSRF-TOKEN':'{{ csrf_token() }}'
@@ -78,7 +80,9 @@
       console.log(response.message);
       equipos = []; // Limpiar la matriz de equipos
       mostrarEquipos(); // Actualizar la vista
-      window.location.href = '{{ secure_url("/firma") }}';
+     
+      console.log(window.location.origin + '/firma')
+      window.location.href ='https://1f8e-63-245-8-122.ngrok-free.app/firma';
     },
     error: function(xhr, status, error) {
       console.log('Error al enviar equipos: ' + error);
