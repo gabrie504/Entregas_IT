@@ -46,7 +46,7 @@
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Recibe:</span>
-            <input type="text" class="form-control" placeholder="a aquien se entrega... " aria-label="Username" aria-describedby="basic-addon1">
+            <input name="nombre_persona" type="text" class="form-control" placeholder="a aquien se entrega... " aria-label="Username" aria-describedby="basic-addon1">
         </div>
 
         <fieldset style="border: 1px solid black; display: inline-block;">
