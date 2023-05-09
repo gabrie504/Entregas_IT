@@ -82,7 +82,10 @@
       mostrarEquipos(); // Actualizar la vista
      
       console.log(window.location.origin + '/firma')
-      window.location.href ='https://1f8e-63-245-8-122.ngrok-free.app/firma';
+      
+    /*   window.location.href = 'https://0433-63-245-8-122.ngrok-free.app/firma'; */
+       window.location.href = '{{secure_url("/firma")}}';
+     /*  window.location.href ='https://1f8e-63-245-8-122.ngrok-free.app/firma'; */
     },
     error: function(xhr, status, error) {
       console.log('Error al enviar equipos: ' + error);

@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PersonsaRecibe extends Model
+class PersonaRecibe extends Model
 {
     use HasFactory;
 
     protected $table = 'personas';
 
-    protected $filable = ['nombre_persona',];
+    protected $fillable = ['nombre_persona' , 'firma_persona'];
+
+    public $timestamps = false;
 }

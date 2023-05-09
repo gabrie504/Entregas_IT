@@ -7,7 +7,8 @@
             canvas {
             width: 500px;
             height: 250px;
-            background-color: #0D0909;
+            background-color: #fff;
+           
         }
 
         #btn-enviar{
@@ -42,8 +43,8 @@
 
 
 
-    <form action="">
-
+    <form  action="{{secure_url('/firma1')}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Recibe:</span>
             <input name="nombre_persona" type="text" class="form-control" placeholder="a aquien se entrega... " aria-label="Username" aria-describedby="basic-addon1">
@@ -53,12 +54,15 @@
             <legend>firma</legend>
             <p>Firme en el espacio en negro</p>
             <canvas id="pizarra"></canvas>
+            <input type="hidden" name="firma" id="firma">
             <button id="borrar" type="button" class="btn btn-danger">Corregir</button>
         </fieldset>
 
         <br>
 
-        <button class="btn btn-success" id="btn-enviar" type="submit">Finalizar entrega</button>
+        <button class="btn btn-success" id="btn-enviar" type="submit" onclick="guardarFirma()">Finalizar entrega</button>
+
+        {{-- <button class="btn btn-success" id="btn-enviar" type="submit">Finalizar entrega</button> --}}
 
     </form>
 
@@ -72,8 +76,10 @@
 
 @section('scripts')
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/4.1.5/signature_pad.umd.min.js" integrity="sha512-ngaalT22GGVs6hGMprLZ39ulFSdC/WUty7LR5AaFxpkDp5TUQ/w11WOIvZBktWOP/e9aA9m/xxpBUNDWpadROA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/4.1.5/signature_pad.umd.min.js" integrity="sha512-ngaalT22GGVs6hGMprLZ39ulFSdC/WUty7LR5AaFxpkDp5TUQ/w11WOIvZBktWOP/e9aA9m/xxpBUNDWpadROA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
 <script>
 
     //======================================================================
@@ -128,7 +134,7 @@ function dibujarLinea(event) {
         ctx.lineJoin = ctx.lineCap = 'round';
         ctx.lineWidth = 2;
         // Color de la linea
-        ctx.strokeStyle = '#fff';
+        ctx.strokeStyle = '#0D0909';
         // Marca el nuevo punto
         if (event.changedTouches == undefined) {
             // Versión ratón
@@ -159,7 +165,10 @@ function dibujarLinea(event) {
 function pararDibujar () {
     pintarLinea = false;
     guardarLinea();
+    
 }
+
+
 
 //======================================================================
 // EVENTOS
@@ -174,6 +183,7 @@ miCanvas.addEventListener('mouseup', pararDibujar, false);
 miCanvas.addEventListener('touchstart', empezarDibujo, false);
 miCanvas.addEventListener('touchmove', dibujarLinea, false);
 
+document.getElementById('firma').value = pizarra.toDataURL();
 //======================================================================
 //BORRAR FIRMA
 // Obtener referencia al botón de borrar
@@ -190,8 +200,50 @@ botonBorrar.addEventListener('click', function() {
 });
 
 
+function guardarFirma() {
+    // Obtener el canvas y el contexto
+    var canvas = document.getElementById("pizarra");
+    var contexto = canvas.getContext("2d");
 
+    // Obtener la imagen en formato base64
+    var imagenBase64 = canvas.toDataURL("image/png");
+
+    // Asignar la imagen al input
+    document.getElementById("firma").value = imagenBase64;
+}
+
+
+
+//**************************************************************************************
+// Obtener el valor de la firma
+/* var canvas = document.getElementById('pizarra');
+var signaturePad = new SignaturePad(canvas);
+var firma = signaturePad.toDataURL();
+
+// Enviar la firma al servidor
+$.ajax({
+    url: '{{secure_url("/firma1")}}',
+    type: 'POST',
+    headers: {
+        'X-CSRF-TOKEN':'{{ csrf_token() }}'
+    },
+    data: { firma: firma },
+    success: function(response) {
+        // Manejar la respuesta del servidor
+    },
+    error: function(xhr, status, error) {
+        // Manejar errores de la solicitud
+        console.log(xhr.responseText);
+    }
+}); */
+
+
+ 
 </script>
   
   
 @endsection
+
+
+
+
