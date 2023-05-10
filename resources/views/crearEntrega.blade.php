@@ -12,8 +12,9 @@
         @csrf
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Fecha</span>
-            <input type="date" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="fecha_entrega">
+            <input type="date" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="fecha_entrega" id="fecha_entrega">
         </div>
+        
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Hora</span>
@@ -78,5 +79,14 @@
             previewImg.src = "#";
             previewFoto.style.display = "none";
         });
+
+
+
+        // Obtener la fecha actual
+        var fechaActual = new Date().toISOString().split('T')[0];
+
+        // Establecer el valor del campo de fecha
+        document.getElementById("fecha_entrega").value = fechaActual;
+
     </script>
 @endsection
