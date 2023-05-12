@@ -40,3 +40,4 @@ Route::POST('/dispositivo', [EntrgasDetalleController::class, 'store'])->name('d
 Route::get('/firma', [FirmaController::class, 'index'])->name('firma.mostrar');
 Route::POST('/firma1', [FirmaController::class, 'store'])->name('firma.store');;
 
+

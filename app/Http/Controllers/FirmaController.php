@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Entrega;
@@ -93,11 +93,12 @@ class FirmaController extends Controller
         $personasDetalle->save();
     }
 
-    
+     // Setear el mensaje de éxito en la sesión
+     Session::flash('success', 'La entrega se creó con éxito');
 
-    
+     return redirect('/')->with('success', 'La entrega se creó con éxito');
 
-    return redirect()->route('home');
+
 }
 
 

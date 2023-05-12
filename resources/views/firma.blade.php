@@ -3,23 +3,35 @@
 
 @section('cabecera')
     
-    <style>
-            canvas {
-            width: 500px;
-            height: 250px;
-            background-color: #fff;
-           
-        }
+<style>
+    canvas {
+        width: 500px;
+        height: 250px;
+        background-color: #fff;
+    }
 
-        #btn-enviar{
-            width: 100%,
-            margin-bottom: 20px;
-            margin-top: 20px;
-        }
+    .equipos-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
+    .equipos-table th,
+    .equipos-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
+    .equipos-table th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
 
-	</style>
+    #btn-enviar {
+        width: 100%;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+</style>
 @endsection
 
 
@@ -29,17 +41,27 @@
 
 @section('content')
 
-    <fieldset>
-        <legend style="border: 1px solid black; display: inline-block;">Informacion de la entrega</legend>
-        <h1>Fecha: {{ $fecha }}</h1>
-        <h2>Hora: {{ $hora }}</h2>
-        <ul>
-        @foreach ($equipos as $equipo)
-            <li>{{ $equipo->nombre_articulo }} - {{ $equipo->descripcion_articulo }}</li>
-        @endforeach
-        </ul>
-
-    </fieldset>
+<fieldset>
+    <legend style="border: 1px solid black; display: inline-block;">Informacion de la entrega</legend>
+    <h3>Fecha: {{ $fecha }}</h1>
+    <h3>Hora: {{ $hora }}</h2>
+    <table class="equipos-table">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Articulo</th>
+                <th style="width: 70%;">Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($equipos as $equipo)
+            <tr>
+                <td>{{ $equipo->nombre_articulo }}</td>
+                <td>{{ $equipo->descripcion_articulo }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</fieldset>
 
 
 
@@ -52,11 +74,14 @@
 
         <fieldset style="border: 1px solid black; display: inline-block;">
             <legend>firma</legend>
-            <p>Firme en el espacio en negro</p>
-            <canvas id="pizarra"></canvas>
+            <p>Firme en el espacio:</p>
+            <div style="position: relative;">
+                <canvas id="pizarra"></canvas>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.1); pointer-events: none;"></div>
+            </div>
             <input type="hidden" name="firma" id="firma">
-            <button id="borrar" type="button" class="btn btn-danger">Corregir</button>
         </fieldset>
+        <button id="borrar" type="button" class="btn btn-danger" style="width: 100%; text-align: center;">Corregir Firma</button>
 
         <br>
 
@@ -66,9 +91,14 @@
 
     </form>
 
-  
 
-
+    @if(session('success'))
+        <script>
+            alert("{{ session('success') }}");
+            window.location.href = "/";
+        </script>
+    @endif
+    
 
 
 @endsection
@@ -211,32 +241,6 @@ function guardarFirma() {
     // Asignar la imagen al input
     document.getElementById("firma").value = imagenBase64;
 }
-
-
-
-//**************************************************************************************
-// Obtener el valor de la firma
-/* var canvas = document.getElementById('pizarra');
-var signaturePad = new SignaturePad(canvas);
-var firma = signaturePad.toDataURL();
-
-// Enviar la firma al servidor
-$.ajax({
-    url: '{{secure_url("/firma1")}}',
-    type: 'POST',
-    headers: {
-        'X-CSRF-TOKEN':'{{ csrf_token() }}'
-    },
-    data: { firma: firma },
-    success: function(response) {
-        // Manejar la respuesta del servidor
-    },
-    error: function(xhr, status, error) {
-        // Manejar errores de la solicitud
-        console.log(xhr.responseText);
-    }
-}); */
-
 
  
 </script>
