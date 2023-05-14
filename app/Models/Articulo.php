@@ -11,7 +11,7 @@ class Articulo extends Model
 
     protected $table = 'articulos';
 
-    protected $filable = ['nombre_articulo'];
+    protected $fillable = ['nombre_articulo'];
     
     public $timestamps = false;
 

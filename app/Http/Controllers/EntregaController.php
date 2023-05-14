@@ -3,46 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Entrega;
 
 class EntregaController extends Controller
 {
-
-    public function index(){
+    public function index()
+    {
         return view('crearEntrega');
     }
 
+    public function store(Request $request)
+    {
 
 
-    public function store(Request $request){
-        
-        //validando
+       
+  
+        // Validando
         $validateData = $request->validate([
-            
-			'fecha_entrega' => 'required|string|date',
+            'fecha_entrega' => 'required|string|date',
             'hora_entrega' => 'required|date_format:H:i',
-			'nombre_encargado' => 'required|string|max:255',
-
+            'foto_entrega' => 'required|image',
         ]);
 
-        $entrega = new Entrega();
-        $entrega-> fecha_entrega = $validateData['fecha_entrega'];
-        $entrega-> hora_entrega = $validateData['hora_entrega'];
-        $entrega-> nombre_encargado = $validateData['nombre_encargado'];
-        
-        
-        $foto = $request->file('foto_entrega');
-        $entrega->foto; 
-
      
+   
+       // Guardando la imagen en la carpeta uploads
+        $image = $request->file('foto_entrega');
+        /* $imageName = time().'.'.$image->getClientOriginalExtension(); */
+       /*  dd($imageName); */
+        $imageName=$image->store('images', 'public');
+        
+ 
+
+   
+
+        $entrega = new Entrega();
+        $entrega->fecha_entrega = $validateData['fecha_entrega'];
+        $entrega->hora_entrega = $validateData['hora_entrega'];
+        $entrega->nombre_encargado = auth()->user()->name;
+        $entrega->foto_articulo = $imageName;
 
         $entrega->save();
 
-          // Obtener el ID de la última entrega creada
-            $idEntrega = $entrega->id_entrega;
-            
-       return redirect()->route('dispositivos.mostrar')->with('idEntrega', $idEntrega);
-        
-
+        return redirect()->route('dispositivos.mostrar');
     }
 }
+
+
+
+ 

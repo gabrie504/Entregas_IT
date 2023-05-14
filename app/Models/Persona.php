@@ -9,5 +9,5 @@ class Persona extends Model
 {
     use HasFactory;
 
-    protected $filable = ['id_entrega', 'id_persona', 'firma_encargado'];
+    protected $fillable = ['id_entrega', 'id_persona', 'firma_encargado'];
 }

@@ -35,9 +35,9 @@ class EntrgasDetalleController extends Controller
             // Verificar si el artículo ya existe en la base de datos
             $articuloExistente = Articulo::where('nombre_articulo', $nombreArticulo)->first();
 
+            $detalleArticulo = new DetalleArticulo();
             if ($articuloExistente) {
                 // Si el artículo ya existe, simplemente asignarlo al detalle de artículos
-                $detalleArticulo = new DetalleArticulo();
                 $detalleArticulo->id_entrega = $idEntrega;
                 $detalleArticulo->id_articulo = $articuloExistente->id_articulo;
                 $detalleArticulo->descripcion_articulo = $descripcionArticulo;
@@ -48,7 +48,7 @@ class EntrgasDetalleController extends Controller
                 $articuloNuevo->nombre_articulo = $nombreArticulo;
                 $articuloNuevo->save();
 
-                $detalleArticulo = new DetalleArticulo();
+                
                 $detalleArticulo->id_entrega = $idEntrega;
                 $detalleArticulo->id_articulo = $articuloNuevo->id;
                 $detalleArticulo->descripcion_articulo = $descripcionArticulo;
@@ -56,7 +56,7 @@ class EntrgasDetalleController extends Controller
             }
         }
 
-        return redirect()->route('firma.mostrar');
+        return response()->json(['msj' => 'se guardo']);
     }
 }
 

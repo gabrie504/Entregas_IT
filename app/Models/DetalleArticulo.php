@@ -11,7 +11,7 @@ class DetalleArticulo extends Model
 
     protected $table = 'DetalleArticulos';
 
-    protected $filable = ['id_entrega','id_articulo', 'descripcion_articulo' ];
+    protected $fillable = ['id_entrega','id_articulo', 'descripcion_articulo' ];
 
     public $timestamps = false;
 }

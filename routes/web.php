@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
 use App\Http\Controllers\EntregaController;
 use App\Http\Controllers\DispositivoController;
 use App\Http\Controllers\EntrgasDetalleController;
 use App\Http\Controllers\FirmaController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +16,8 @@ use App\Http\Controllers\FirmaController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
@@ -38,4 +41,5 @@ Route::POST('/dispositivo', [EntrgasDetalleController::class, 'store'])->name('d
 
 
 Route::get('/firma', [FirmaController::class, 'index'])->name('firma.mostrar');
+Route::POST('/firma1', [FirmaController::class, 'store'])->name('firma.store');;
 

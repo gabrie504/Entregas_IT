@@ -25,8 +25,10 @@
               <a class="nav-link" href="#">Historial</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">User@Log</a>
-            </li>
+          </li>
+              <a class="nav-link disabled">  {{  auth()->user()->name}} </a>
+          </li>
+          
           </ul>
     </nav>
     <main>
