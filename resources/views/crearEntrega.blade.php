@@ -63,10 +63,10 @@
             <div id="indicador-creacion" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 <div class="text-center">
                     <div class="spinner-border" role="status">
-                      <span class="visually-hidden">Cargando...</span>
+                      <span class="visually-hidden"> <strong>Cargando...</strong> </span>
                     </div>
                 </div>
-                <p class="text-center mt-2">Creando entrega...</p>
+                <p class="text-center mt-2"> <strong>  Creando entrega... </strong></p>
             </div>
             
         </form>
