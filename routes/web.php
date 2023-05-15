@@ -5,6 +5,9 @@ use App\Http\Controllers\EntregaController;
 use App\Http\Controllers\DispositivoController;
 use App\Http\Controllers\EntrgasDetalleController;
 use App\Http\Controllers\FirmaController;
+use App\Http\Controllers\ListaEquipoController;
+use App\Http\Controllers\HistorialController;
+
 
 
 /*
@@ -18,6 +21,8 @@ use App\Http\Controllers\FirmaController;
 |
 */
 
+//************************************************************************************************************************** */
+//**********************************RUTAS DE CREACION DE ENTREGAS*********************************************************** */
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // your authenticated routes here
     Route::get('/', function () {
@@ -45,6 +50,26 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     
 });
 
+
+
+//************************************************************************************************************************** */
+//**********************************RUTAS PARA VER EQUIPOS AGREGADOS*********************************************************** */
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/listaequipo', [ListaEquipoController::class, 'index'])->name('lista.equipo');
+
+    
+});
+
+
+//************************************************************************************************************************** */
+//**********************************RUTAS PARA VER ENTREGAS*********************************************************** */
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/historial' , [HistorialController::class, 'index'])->name('historial');
+
+    
+});
 
 
 
