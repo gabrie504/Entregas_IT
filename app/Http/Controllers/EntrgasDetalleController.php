@@ -10,25 +10,12 @@ use App\Models\Entrega;
 class EntrgasDetalleController extends Controller
 {
 
-    public function searchArticulos(Request $request){
-    $term = $request->input('term');
-
-    $articulos = Articulo::where('nombre_articulo', 'LIKE', '%'.$term.'%')->get(['nombre_articulo']);
-
-    $result = [];
-    foreach ($articulos as $articulo) {
-        $result[] = $articulo->nombre_articulo;
-    }
-
-    return response()->json($result);
-}
 
 
     public function index(){
 
-        $articulos = Articulo::pluck('nombre_articulo')->all();
+        $articulos = Articulo::all();
         return view('mostrarDispositivos', compact('articulos'));
-
     }
 
     public function store(Request $request)
