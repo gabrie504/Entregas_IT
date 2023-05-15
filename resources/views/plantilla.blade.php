@@ -15,18 +15,23 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{secure_url(route('home'))}}">Home</a>
           </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Entregas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Equipos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Historial</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">User@Log</a>
-            </li>
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ secure_url('/logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </li>
           </ul>
     </nav>
     <main>

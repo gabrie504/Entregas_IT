@@ -22,8 +22,8 @@
             <div class="form-group">
                 <label for="encargado">Encargado</label>
 
-                <input type="text" class="form-control" id="encargado" name="nombre_encargado">
-                {{-- <input type="text" class="form-control" id="encargado" name="encargado" value="{{ auth()->user()->name }}" readonly> --}}
+               
+                 <input type="text" class="form-control" id="encargado" name="encargado" value="{{ auth()->user()->name }}" readonly> 
             </div>
 
             <br>
