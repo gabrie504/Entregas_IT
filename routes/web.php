@@ -67,7 +67,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/historial' , [HistorialController::class, 'index'])->name('historial');
-
+    Route::get('/historialedit/{id_}', [HistorialController::class, 'show']);
     
 });
 

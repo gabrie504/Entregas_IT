@@ -110,49 +110,10 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `entrega`.`failed_jobs`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `entrega`.`failed_jobs` (
-  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `uuid` VARCHAR(255) NOT NULL,
-  `connection` TEXT NOT NULL,
-  `queue` TEXT NOT NULL,
-  `payload` LONGTEXT NOT NULL,
-  `exception` LONGTEXT NOT NULL,
-  `failed_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `failed_jobs_uuid_unique` (`uuid` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
 
 
--- -----------------------------------------------------
--- Table `entrega`.`migrations`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `entrega`.`migrations` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `migration` VARCHAR(255) NOT NULL,
-  `batch` INT NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
 
 
--- -----------------------------------------------------
--- Table `entrega`.`password_reset_tokens`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `entrega`.`password_reset_tokens` (
-  `email` VARCHAR(255) NOT NULL,
-  `token` VARCHAR(255) NOT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  PRIMARY KEY (`email`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -177,23 +138,7 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
 
--- -----------------------------------------------------
--- Table `entrega`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `entrega`.`users` (
-  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `email_verified_at` TIMESTAMP NULL DEFAULT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `remember_token` VARCHAR(100) NULL DEFAULT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `users_email_unique` (`email` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -30,8 +30,8 @@
             </tbody>
         </table>
 
+        
         {{ $articulos->onEachSide(0)->links() }}  
-       {{-- {{ $articulos->links('equipos/paginacion')}} --}}
        
 
     </div>
