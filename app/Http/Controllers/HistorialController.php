@@ -37,15 +37,17 @@ INNER JOIN personas ON personas.id_persona = detallepersonas.id_persona;
                 'articulos.nombre_articulo',
                 'detallepersonas.firma_encargado',
                 'personas.nombre_persona')
-            ->orderBy('entregas.fecha_entrega', 'desc')
+            ->orderBy('entregas.id_entrega', 'desc')
+            ->distinct()
             ->paginate(15);
     
+        
         return view('historial/verHistorial', compact('entregas'));
     }
     
 
     public function show($id)
-    {
+  {
         $entrega = DB::table('entregas')
             ->join('detallearticulos', 'detallearticulos.id_entrega', '=', 'entregas.id_entrega')
             ->join('articulos', 'articulos.id_articulo', '=', 'detallearticulos.id_articulo')
@@ -53,7 +55,7 @@ INNER JOIN personas ON personas.id_persona = detallepersonas.id_persona;
             ->join('personas', 'personas.id_persona', '=', 'detallepersonas.id_persona')
             ->where('entregas.id_entrega', $id)
             ->first();
-
+         
         return view('historial/entregaUnica', compact('entrega'));
-    } 
+    }  
 }
