@@ -1,0 +1,16 @@
+{
+    "name": "Entregas IT",
+    "short_name": "eit",
+    "start_url": "https://e360-161-0-207-48.ngrok-free.app/service-worker.js",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+      {
+        "src": "/icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ]
+  }
+  

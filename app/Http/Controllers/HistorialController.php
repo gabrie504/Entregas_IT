@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Entrega;
+use App\Models\Articulo;
+use App\Models\DetalleArticulo;
+use App\Models\PersonaDetalle;
+use App\Models\PersonaRecibe;
+
 
 
 class HistorialController extends Controller
@@ -48,14 +53,38 @@ INNER JOIN personas ON personas.id_persona = detallepersonas.id_persona;
 
     public function show($id)
   {
-        $entrega = DB::table('entregas')
-            ->join('detallearticulos', 'detallearticulos.id_entrega', '=', 'entregas.id_entrega')
-            ->join('articulos', 'articulos.id_articulo', '=', 'detallearticulos.id_articulo')
-            ->join('detallepersonas', 'detallepersonas.id_entrega', '=', 'entregas.id_entrega')
-            ->join('personas', 'personas.id_persona', '=', 'detallepersonas.id_persona')
-            ->where('entregas.id_entrega', $id)
-            ->first();
-         
-        return view('historial/entregaUnica', compact('entrega'));
+/*     $entrega = Entrega::join('detallearticulos', 'detallearticulos.id_entrega', '=', 'entregas.id_entrega')
+    ->join('articulos', 'articulos.id_articulo', '=', 'detallearticulos.id_articulo')
+    ->join('detallepersonas', 'detallepersonas.id_entrega', '=', 'entregas.id_entrega')
+    ->join('personas', 'personas.id_persona', '=', 'detallepersonas.id_persona')
+    ->where('entregas.id_entrega', $id)
+    ->first();
+ */
+$entrega = Entrega::select('e.fecha_entrega', 'e.hora_entrega', 'da.descripcion_articulo', 'a.nombre_articulo',
+                            'e.nombre_encargado', 'e.foto_articulo', 'personas.nombre_persona', 'detallepersonas.firma_encargado')
+    ->from('entregas as e')
+    ->join('detallearticulos as da', 'e.id_entrega', '=', 'da.id_entrega')
+    ->join('articulos as a', 'da.id_articulo', '=', 'a.id_articulo')
+    ->join('detallepersonas', 'detallepersonas.id_entrega', '=', 'e.id_entrega')
+    ->join('personas', 'personas.id_persona', '=', 'detallepersonas.id_persona')
+    ->where('e.id_entrega', '=', $id)
+    ->distinct()
+    ->get();
+
+
+
+            
+           
+          
+        return view('historial/entregaUnica', [
+            'fecha' => $entrega[0]->fecha_entrega,
+            'hora' => $entrega[0]->hora_entrega,
+            'encargado' => $entrega[0]->nombre_encargado,
+            'foto' => $entrega[0]->foto_articulo,
+            'equipos' => $entrega,
+            'recibe' => $entrega[0]->nombre_persona,
+            'firma' => $entrega[0]->firma_encargado
+
+        ] );
     }  
 }
