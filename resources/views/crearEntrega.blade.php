@@ -74,7 +74,10 @@
 @endsection
 
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
+    
     var tomarFotoBtn = document.getElementById("tomar-foto-btn");
     var eliminarFotoBtn = document.getElementById("eliminar-foto-btn");
     var fotoEntregaInput = document.getElementById("foto_entrega");
@@ -117,10 +120,17 @@
     document.getElementById("fecha_entrega").value = fechaActual;
 
     // Modificar el evento submit del formulario
-    var form = document.querySelector("form");
+/*     var form = document.querySelector("form");
     form.addEventListener("submit", function() {
         indicadorCreacion.style.display = "block";  // Mostrar el indicador
         form.classList.add("disabled");  // Deshabilitar el formulario
+    }); */
+    $(document).ready(function() {
+    $('form').submit(function() {
+        $('#indicador-creacion').css('display', 'block');
+        $(this).addClass('disabled');
     });
+});
+
 </script>
 @endsection

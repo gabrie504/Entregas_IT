@@ -62,6 +62,7 @@
         </tbody>
     </table>
 </fieldset>
+<br>
 
         @if(session('success'))
         <script>
