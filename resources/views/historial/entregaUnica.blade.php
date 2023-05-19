@@ -19,19 +19,21 @@
                 <div class="card-body">
                     <h5 class="card-title">Detalles de la entrega</h5>
                     <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ asset('storage/'.$foto) }}" class="img-fluid img-thumbnail" alt="Foto del Artículo" style="max-width: 130px;">
+                        <div class="col-md-6 text-center"> <!-- Agregado "text-center" para centrar la imagen -->
+                            <img src="{{ secure_asset('storage/'.$foto) }}" class="img-fluid img-thumbnail" alt="Foto del Artículo" style="max-width: 130px; margin: auto;"> <!-- Agregado "margin: auto;" para centrar la imagen -->
                         </div>
                         <div class="col-md-6">
-                            <table class="table">
+                            <table class="equipos-table  table table-light table-striped table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30%;">Articulo</th>
+                                        <th style="width: 70%;">Descripción</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     @foreach ($equipos as $equipo)
                                     <tr>
-                                        <th>Nombre:</th>
                                         <td>{{ $equipo->nombre_articulo }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Descripción:</th>
                                         <td>{{ $equipo->descripcion_articulo }}</td>
                                     </tr>
                                     @endforeach
@@ -41,7 +43,7 @@
                     </div>
                     <div class="text-center">
                         <p>Firma del Encargado:</p>
-                        <img src="{{ asset('storage/'.$firma) }}" class="img-fluid img-thumbnail" alt="Firma del Encargado" style="max-width: 150px;">
+                        <img src="{{ secure_asset('storage/'.$firma) }}" class="img-fluid img-thumbnail" alt="Firma del Encargado" style="max-width: 150px;">
                     </div>
                     <p class="text-center">Recibe: {{ $recibe }}</p>
                     <p class="text-center">Entrega: {{ $encargado }}</p>
