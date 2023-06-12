@@ -45,11 +45,12 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <p>Firma del Encargado:</p>
+                        <p>Firma de quien Recibe:</p>
                         <img src="{{ secure_asset('storage/'.$firma) }}" class="img-fluid img-thumbnail" alt="Firma del Encargado" style="max-width: 150px;">
                     </div>
-                    <p class="text-center">Recibe: {{ $recibe }}</p>
-                    <p class="text-center">Entrega: {{ $encargado }}</p>
+                    <p class="text-center">Recibio Por: {{ $recibe }}</p>
+                    <p class="text-center">Entregado Por: {{ $encargado }}</p>
+
                     <div class="text-center d-print-none">
                         <button class="btn btn-primary" onclick="window.print()">Imprimir</button>
                     </div>
