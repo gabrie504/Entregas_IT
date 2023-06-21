@@ -67,7 +67,7 @@
         @if(session('success'))
         <script>
             alert("{{ session('success') }}");
-            window.location.href = "/";
+            window.location.href = "/historial";
         </script>
         @else
 
