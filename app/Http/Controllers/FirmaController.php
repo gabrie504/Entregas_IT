@@ -16,10 +16,10 @@ class FirmaController extends Controller
     public function index(){
         $ultimaEntrega = Entrega::max('id_entrega');
         
-        $entregas = Entrega::select('e.fecha_entrega', 'e.hora_entrega', 'da.descripcion_articulo', 'a.nombre_articulo')
-            ->from('Entregas as e')
-            ->join('DetalleArticulos as da', 'e.id_entrega', '=', 'da.id_entrega')
-            ->join('Articulos as a', 'da.id_articulo', '=', 'a.id_articulo')
+        $entregas = entrega::select('e.fecha_entrega', 'e.hora_entrega', 'da.descripcion_articulo', 'a.nombre_articulo')
+            ->from('entregas as e')
+            ->join('detallearticulos as da', 'e.id_entrega', '=', 'da.id_entrega')
+            ->join('a.rticulos as a', 'da.id_articulo', '=', 'a.id_articulo')
             ->where('e.id_entrega', '=', $ultimaEntrega)
             ->distinct()
             ->get();

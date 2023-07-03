@@ -60,7 +60,7 @@ INNER JOIN personas ON personas.id_persona = detallepersonas.id_persona;
     ->where('entregas.id_entrega', $id)
     ->first();
  */
-$entrega = Entrega::select('e.fecha_entrega', 'e.hora_entrega', 'da.descripcion_articulo', 'a.nombre_articulo',
+$entrega = entrega::select('e.fecha_entrega', 'e.hora_entrega', 'da.descripcion_articulo', 'a.nombre_articulo',
                             'e.nombre_encargado', 'e.foto_articulo', 'personas.nombre_persona', 'detallepersonas.firma_encargado')
     ->from('entregas as e')
     ->join('detallearticulos as da', 'e.id_entrega', '=', 'da.id_entrega')
