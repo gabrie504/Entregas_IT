@@ -19,7 +19,7 @@ class FirmaController extends Controller
         $entregas = entrega::select('e.fecha_entrega', 'e.hora_entrega', 'da.descripcion_articulo', 'a.nombre_articulo')
             ->from('entregas as e')
             ->join('detallearticulos as da', 'e.id_entrega', '=', 'da.id_entrega')
-            ->join('a.rticulos as a', 'da.id_articulo', '=', 'a.id_articulo')
+            ->join('a.articulos as a', 'da.id_articulo', '=', 'a.id_articulo')
             ->where('e.id_entrega', '=', $ultimaEntrega)
             ->distinct()
             ->get();
