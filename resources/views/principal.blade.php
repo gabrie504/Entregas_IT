@@ -23,6 +23,30 @@
         </div>
     </a>
 
+    <a href="{{secure_url('/entrega1')}}">
+       <div class="col">
+        <div class="card">
+          <img src="{{secure_asset('prestamos.jpg')}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Prestamos</h5>
+            <p class="card-text">Prestar un equipo</p>
+          </div>
+        </div>
+          </div>
+      </a>
+      
+      <a href="{{secure_url('/entrega1')}}">
+        <div class="col">
+         <div class="card">
+           <img src="{{secure_asset('salidas.jpeg')}}" class="card-img-top" alt="...">
+           <div class="card-body">
+             <h5 class="card-title">Salida de Equipos</h5>
+             <p class="card-text">Envio de Equipos</p>
+           </div>
+         </div>
+           </div>
+       </a>
+
     <a href="{{secure_url('/historial')}}">
       <div class="col">
         <div class="card">
