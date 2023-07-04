@@ -1,44 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <style>
+        .container-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-tvc {
+            width: 100px;
+        }
+
+        .item {
+            text-align: center;
+        }
+
+        @media (max-width: 767px) {
+            h1.item {
+                display: none;
+            }
+
+            .container-nav {
+                display: flex;
+            justify-content: space-between;
+            align-items: center;
+            }
+        }
+
+
+    </style>
     @yield('cabecera')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="mobile-web-app-capable" content="yes">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        
+
     <title>@yield('title')</title>
-   
+
 </head>
+
 <body>
+    <nav class="container-nav">
+        <a href="{{secure_url(route('home'))}}">
+            <img src="{{ secure_asset('tvc.png') }}" class="logo-tvc" alt="logo tvc">
+        </a>
 
-    <nav>
-        <ul class="nav justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{secure_url(route('home'))}}">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
-            </a>
+        <h1 class="item">IT</h1>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ secure_url('/logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+        <div class="item">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{secure_url(route('home'))}}">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ secure_url('/logout') }}"
+                            onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
 
-                <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
-        </li>
-          </ul>
+                        <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
     </nav>
     <main>
-
         @yield('content')
     </main>
     <footer>
@@ -49,6 +86,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-
-  
 </html>
