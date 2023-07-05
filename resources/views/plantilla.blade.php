@@ -3,32 +3,66 @@
 <head>
 
     <style>
-        .container-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
 
-         .logo-tvc {
-            width: 150px;
-         }
 
-        .item {
-            text-align: center;
-        }
+/* ---------------------------------------- */
+         .container1 {
+  display: flex;
+}
 
-        @media (max-width: 767px) {
-            h1.item {
-                display: none;
-            }
+.sidebar1 {
+  max-width: 250px;
 
-            .container-nav {
-                display: flex;
-            justify-content: space-between;
-            align-items: center;
-            }
-        }
+  width: 100%;
+  height: 100vh;
+  background-color: #f0f0f0;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+  z-index: 1;
+}
 
+.sidebar1.collapsed {
+  transform: translateX(-300px);
+}
+
+.sidebar1 nav {
+  margin-top: 50px;
+}
+
+.sidebar1 ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar1 li {
+  padding: 10px;
+}
+
+.sidebar1 li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.main-content1 {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content1.collapsed {
+  margin-left: -250px;
+}
+
+#collapseButton1 {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
 
     </style>
     @yield('cabecera')
@@ -43,19 +77,6 @@
 </head>
 
 <body>
-    {{--***************************************************  --}}
-    <nav class="navbar bg-body-tertiary ">
-        <div class="container-fluid justify-content-start">
-         
-
-          <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          
-          {{-- +++++++++++++++++++++lo mio++++++++++++++++++++++++++++++++ --}}
-
-
 
         <div class="item ms-auto">
             <ul class="nav justify-content-end">
@@ -79,61 +100,49 @@
                     </div>
                 </li>
             </ul>
-        </div>  
-
-
-
-          {{-- +++++++++++++++++++++++lo mio++++++++++++++++++++++++++++++ --}}
-          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-              <a href="{{secure_url(route('home'))}}">
-                <img src="{{ secure_asset('tvc.png') }}" class="logo-tvc offcanvas-title" alt="logo tvc"  id="offcanvasNavbarLabel">
-            </a>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
         </div>
+
+<div class="container1">
+    <button id="collapseButton1">&laquo;</button>
+    <div class="sidebar1">
+      <nav>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Acerca de</a></li>
+          <li><a href="#">Servicios</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
       </nav>
+    </div>
 
-    {{-- *************************************************** --}}
-
-    
-    <main>
+    <main class="main-content1">
         @yield('content')
     </main>
+
+  </div>
+
+
+
     <footer>
 
     </footer>
     @yield('scripts')
+
+    <script>
+        var collapseButton = document.getElementById('collapseButton1');
+collapseButton.addEventListener('click', toggleSidebar);
+
+function toggleSidebar() {
+  var sidebar = document.querySelector('.sidebar1');
+  var mainContent = document.querySelector('.main-content1');
+
+  sidebar.classList.toggle('collapsed');
+  mainContent.classList.toggle('collapsed');
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </html>
