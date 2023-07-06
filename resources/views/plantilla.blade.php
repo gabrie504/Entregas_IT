@@ -3,7 +3,9 @@
 <head>
 
     <style>
-
+.main-content1{
+  margin-top: 10%;
+}
 
 /* ---------------------------------------- */
          .container1 {
@@ -12,9 +14,8 @@
 
 .sidebar1 {
   max-width: 250px;
-
   width: 100%;
-  height: 100vh;
+  height: auto;
   background-color: #f0f0f0;
   transition: transform 0.3s ease-in-out;
   transform: translateX(0);
@@ -49,8 +50,9 @@
   transition: margin-left 0.3s ease-in-out;
 }
 
+
 .main-content1.collapsed {
-  margin-left: -250px;
+  margin-left: -20%;
 }
 
 #collapseButton1 {
@@ -63,6 +65,20 @@
   cursor: pointer;
   z-index: 2;
 }
+
+@media (max-width: 768px) {
+  .sidebar1.collapsed {
+    transform: translateX(-100%);
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+
+
+
 
     </style>
     @yield('cabecera')
@@ -77,34 +93,42 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary  fixed-top">
+ 
+    <button id="collapseButton1" class=""> <span class="navbar-toggler-icon"></span> </button> 
 
-        <div class="item ms-auto">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{secure_url(route('home'))}}">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ secure_url('/logout') }}"
-                            onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+{{-- <button id="collapseButton1">&laquo;</button> --}}
 
-                        <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-            </ul>
-        </div>
+  <div class="item ms-auto">
+      <ul class="nav justify-content-end">
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{secure_url(route('home'))}}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->name }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ secure_url('/logout') }}"
+                      onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+              </div>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+
 
 <div class="container1">
-    <button id="collapseButton1">&laquo;</button>
-    <div class="sidebar1">
+    
+    <div class="sidebar1 collapsed">
       <nav>
         <ul>
           <li><a href="#">Inicio</a></li>
@@ -115,7 +139,7 @@
       </nav>
     </div>
 
-    <main class="main-content1">
+    <main class="main-content1 collapsed">
         @yield('content')
     </main>
 
@@ -129,18 +153,29 @@
     @yield('scripts')
 
     <script>
-        var collapseButton = document.getElementById('collapseButton1');
+var collapseButton = document.getElementById('collapseButton1');
+var sidebar = document.querySelector('.sidebar1');
+var mainContent = document.querySelector('.main-content1');
+var isMobile = window.innerWidth <= 768;
+
+if (isMobile) {
+  sidebar.classList.add('collapsed');
+  mainContent.classList.add('collapsed');
+}
+
 collapseButton.addEventListener('click', toggleSidebar);
 
 function toggleSidebar() {
-  var sidebar = document.querySelector('.sidebar1');
-  var mainContent = document.querySelector('.main-content1');
-
   sidebar.classList.toggle('collapsed');
   mainContent.classList.toggle('collapsed');
+
+  if (isMobile) {
+    document.body.classList.toggle('overflow-hidden');
+  }
 }
 
-</script>
+    </script>
+    
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 

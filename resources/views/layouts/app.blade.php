@@ -13,12 +13,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
+    <style>
+        .logo {
+          position: absolute;
+          top: 5px;
+          left: 10px;
+          width: 70px; /* Ajusta el tamaño del logo según tus necesidades */
+        }
+
+        @media (max-width: 767.98px) {
+        .logo {
+            position: relative;
+            margin: 5px left;
+            width: 20%; /* Ajusta el tamaño del logo según tus necesidades */
+        }
+
+        .navbar-brand {
+            display: block;
+            text-align: center;
+        }
+    }
+        
+      </style>
+
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ secure_url('/') }}">
+                <img  class="logo"
+                 src="{{secure_asset('tvc.png')}}" alt="">
+                <a class="navbar-brand link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-block text-center" href="{{ secure_url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
