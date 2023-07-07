@@ -5,7 +5,7 @@
 @endsection
 
 @section('cabecera')
-    
+
 <style>
   .card-custom {
   height: 100%;
@@ -24,7 +24,7 @@
 
 @section('content')
 <div class="row row-cols-1 row-cols-md-2 g-4">
-   <a href="{{secure_url('/entrega1')}}">
+   <a href="{{secure_url('/entrega1',['id' => 1])}}">
      <div class="col">
       <div class="card card-custom">
         <img src="{{secure_asset('entrgas.jpg')}}" class="card-img-top img-custom" alt="...">
@@ -36,7 +36,7 @@
     </div>
   </a>
 
-  <a href="{{secure_url('/entrega1')}}">
+  <a href="{{secure_url('/entrega1',['id' => 2])}}">
     <div class="col">
       <div class="card card-custom">
         <img src="{{secure_asset('prestamos.jpg')}}" class="card-img-top img-custom" alt="...">
@@ -48,7 +48,7 @@
     </div>
   </a>
 
-  <a href="{{secure_url('/entrega1')}}">
+  <a href="{{secure_url('/entrega1',['id' => 3])}}">
     <div class="col">
       <div class="card card-custom">
         <img src="{{secure_asset('salidas.jpeg')}}" class="card-img-top img-custom" alt="...">

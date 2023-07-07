@@ -23,7 +23,7 @@
 }
 
 .sidebar1.collapsed {
-  transform: translateX(-300px);
+  transform: translateX(-250px);
 }
 
 .sidebar1 nav {
@@ -52,7 +52,7 @@
 
 
 .main-content1.collapsed {
-  margin-left: -20%;
+  margin-left: -13%;
 }
 
 #collapseButton1 {
@@ -66,16 +66,37 @@
   z-index: 2;
 }
 
-@media (max-width: 768px) {
-  .sidebar1.collapsed {
-    transform: translateX(-100%);
-  }
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+
+
+.sidebar1{
+  width:500px;
+height: auto;
+background-color: #f0f0f0;
+transition: transform 0.3s ease-in-out;
+transform: translateX(100);
+z-index: 1;
+}
+
+.sidebar1.collapsed {
+  transform: translateX(-100%);
+}
+
+.main-content1{
+  margin-left: 100%;
+}
+
+.main-content1.collapsed {
+margin-left: -25%;
+}
+
+
+
+}
 
 
 
@@ -94,8 +115,8 @@
 
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary  fixed-top">
- 
-    <button id="collapseButton1" class=""> <span class="navbar-toggler-icon"></span> </button> 
+
+    <button id="collapseButton1" class=""> <span class="navbar-toggler-icon"></span> </button>
 
 {{-- <button id="collapseButton1">&laquo;</button> --}}
 
@@ -127,8 +148,8 @@
 
 
 <div class="container1">
-    
-    <div class="sidebar1 collapsed">
+
+    <div class="sidebar1 ">
       <nav>
         <ul>
           <li><a href="#">Inicio</a></li>
@@ -139,7 +160,7 @@
       </nav>
     </div>
 
-    <main class="main-content1 collapsed">
+    <main class="main-content1 ">
         @yield('content')
     </main>
 
@@ -150,7 +171,10 @@
     <footer>
 
     </footer>
-    @yield('scripts')
+
+
+
+@yield('scripts')
 
     <script>
 var collapseButton = document.getElementById('collapseButton1');
@@ -169,13 +193,11 @@ function toggleSidebar() {
   sidebar.classList.toggle('collapsed');
   mainContent.classList.toggle('collapsed');
 
-  if (isMobile) {
-    document.body.classList.toggle('overflow-hidden');
-  }
+
 }
 
     </script>
-    
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
