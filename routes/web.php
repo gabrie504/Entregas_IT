@@ -28,27 +28,31 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', function () {
         return view('principal');
     })->name('home');
-    
-    
+
+
     Route::get('/prueba', function () {
         return view('prueba');
     })->name('prueba');
-    
-    //rutas para la creacin de una entrega 
-    Route::get('/entrega1', [EntregaController::class, 'index'])->name('entrega.mostrar');
+
+    //rutas para la creacin de una entrega
+    Route::get('/entrega1/{id}', [EntregaController::class, 'index'])->name('entrega.mostrar');
     Route::POST('/entrega', [EntregaController::class, 'store'])->name('entrega.crear');
-    
-    //rutas de creacion de lista de dispositivos para dispositivos 
+
+    //rutas de creacion de lista de dispositivos para dispositivos
     Route::get('/dispositivo1', [EntrgasDetalleController::class, 'index'])->name('dispositivos.mostrar');
     Route::POST('/dispositivo', [EntrgasDetalleController::class, 'store'])->name('dispositivos.store');
     Route::get('/dispositivos2', [EntrgasDetalleController::class, 'searchArticulos']);
     //Route::delete('/dispositivo/{articulo}', [EntrgasDetalleController::class, 'destroy'])->name('dispositivos.destroy');
-    
-    
+
+
     Route::get('/firma', [FirmaController::class, 'index'])->name('firma.mostrar');
-    Route::POST('/firma1', [FirmaController::class, 'store'])->name('firma.store');;
-    
+    Route::POST('/firma1', [FirmaController::class, 'store'])->name('firma.store');
+
 });
+
+//************************************************************************************************************************** */
+//**********************************RUTAS DE CREACION DE Prestamos*********************************************************** */
+
 
 
 
@@ -58,7 +62,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/listaequipo', [ListaEquipoController::class, 'index'])->name('lista.equipo');
 
-    
+
 });
 
 
@@ -67,8 +71,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/historial' , [HistorialController::class, 'index'])->name('historial');
-    Route::get('/historialedit/{id}', [HistorialController::class, 'show']);
-    
+    Route::get('/historialedit', [HistorialController::class, 'show']);
+
 });
 
 Route::get('/offline', function(){

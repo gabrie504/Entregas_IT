@@ -22,8 +22,8 @@
   }
 </style>
 
-    
-@endsection 
+
+@endsection
 @section('content')
   <div class="container">
     <h1>Agregar equipos</h1>
@@ -32,10 +32,18 @@
         <label for="nombre">Nombre del equipo:</label>
         <input type="text" class="form-control" id="nombre" name="nombre">
       </div>
+
+      <div class="form-group">
+        <label for="inventario">Inventario</label>
+        <input type="text" class="form-control" id="inventario" name="inventario">
+      </div>
+
       <div class="form-group">
         <label for="descripcion">Descripción del equipo:</label>
         <input type="text" class="form-control" id="descripcion" name="descripcion">
       </div>
+      <br>
+
       <button type="button" class="btn btn-primary" id="agregar-equipo">Agregar equipo</button>
 
       <div id="indicador-creacion" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
@@ -54,6 +62,7 @@
         <thead>
           <tr>
             <th>Nombre</th>
+            <th>inventario</th>
             <th>Descripción</th>
             <th>Acciones</th>
           </tr>
@@ -62,7 +71,8 @@
       </table>
     </div>
 
-    <button type="submit" class="btn btn-success" id="enviar-equipos">Enviar equipos</button>
+    <button type="submit" class="btn btn-success" id="enviar-equipos" style="display: none;">Enviar equipos</button>
+
   </div>
 @endsection
 
@@ -101,17 +111,45 @@
 
 //*********************************************************************
 
-    $('#agregar-equipo').click(function() {
+$('#agregar-equipo').click(function() {
+    var nombre = $('#nombre').val();
+    var inventario = $('#inventario').val();
+    var descripcion = $('#descripcion').val();
+
+    if (nombre && descripcion) {
+      equipos.push({ nombre: nombre,inventario: inventario, descripcion: descripcion });
+      mostrarEquipos();
+      $('#nombre').val('');
+      $('#inventario').val('');
+      $('#descripcion').val('');
+      $('#enviar-equipos').show(); // Mostrar el botón después de agregar un equipo
+    }
+  });
+
+  $(document).ready(function() {
+  // ...
+
+  $('#descripcion').keypress(function(event) {
+    if (event.which === 13) { // Verificar si se presionó la tecla Enter
+      event.preventDefault(); // Evitar que se envíe el formulario
+
       var nombre = $('#nombre').val();
       var descripcion = $('#descripcion').val();
 
       if (nombre && descripcion) {
-        equipos.push({ nombre: nombre, descripcion: descripcion });
+        equipos.push({ nombre: nombre,inventario: inventario, descripcion: descripcion });
         mostrarEquipos();
         $('#nombre').val('');
+        $('#inventario').val('');
         $('#descripcion').val('');
+        $('#enviar-equipos').show(); // Mostrar el botón después de agregar un equipo
       }
-    });
+    }
+  });
+
+  // ...
+});
+
 
     $(document).on('click', '.eliminar-equipo', function() {
       var index = $(this).data('index');
@@ -146,16 +184,17 @@
     });
 
     function mostrarEquipos() {
-      var html = '';
-      for(var i = 0; i < equipos.length; i++) {
+    var html = '';
+    for(var i = 0; i < equipos.length; i++) {
       html += '<tr>';
       html += '<td>' + equipos[i].nombre + '</td>';
+      html += '<td>' + equipos[i].inventario + '</td>';
       html += '<td>' + equipos[i].descripcion + '</td>';
       html += '<td><button type="button" class="btn btn-danger eliminar-equipo" data-index="' + i + '">Eliminar</button></td>';
       html += '</tr>';
-}
-$('#lista-equipos').html(html);
-}
+    }
+    $('#lista-equipos').html(html);
+  }
 });
 
 // Mostrar el indicador de carga al enviar el formulario

@@ -21,7 +21,8 @@
                     <div class="row">
                         <div class="col-md-6 text-center"> <!-- Agregado "text-center" para centrar la imagen -->
 
-                            <img src="{{ secure_asset('storage/'.$foto) }}" class="img-fluid img-thumbnail" alt="Foto del Artículo" style="max-width: 130px; margin: auto;"> <!-- Agregado "margin: auto;" para centrar la imagen -->
+                            <img src="{{ secure_asset('storage/'.$foto) }}" class="img-fluid img-thumbnail" alt="Foto del Artículo" style="max-width: 130px; margin: auto;">
+
 
                           
                         </div>

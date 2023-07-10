@@ -8,17 +8,17 @@ use App\Models\Entrega;
 
 class EntregaController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return view('crearEntrega');
+        return view('crearEntrega', compact('id'));
     }
 
     public function store(Request $request)
     {
 
 
-       
-  
+
+
         // Validando
         $validateData = $request->validate([
             'fecha_entrega' => 'required|string|date',
@@ -26,16 +26,16 @@ class EntregaController extends Controller
             'foto_entrega' => 'required|image',
         ]);
 
-     
-   
+
+
        // Guardando la imagen en la carpeta uploads
         $image = $request->file('foto_entrega');
 
         $imageName=$image->store('images', 'public');
-        
- 
 
-   
+
+
+
 
         $entrega = new Entrega();
         $entrega->fecha_entrega = $validateData['fecha_entrega'];
@@ -51,4 +51,3 @@ class EntregaController extends Controller
 
 
 
- 

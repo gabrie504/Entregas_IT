@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     <div class="container">
         <form method="POST" action="{{ secure_url('/entrega') }}" enctype="multipart/form-data">
             @csrf
@@ -22,13 +23,22 @@
             <div class="form-group">
                 <label for="encargado">Encargado</label>
 
-               
-                 <input type="text" class="form-control" id="encargado" name="encargado" value="{{ auth()->user()->name }}" readonly> 
+
+                 <input type="text" class="form-control" id="encargado" name="encargado" value="{{ auth()->user()->name }}" readonly>
             </div>
 
             <br>
+
             <div class="form-group">
-                <label for="foto_entrega">Foto de entrega</label>
+                <label for="foto_entrega">
+                    @if($id == '1')
+                        Foto Entrega
+                    @elseif( $id == 2)
+                        Foto de Prestamo
+                    @elseif( $id == 3)
+                        Foto de equipo que sale
+                    @endif
+                </label>
                 <hr>
                 <div class="d-flex">
                     <button type="button" class="btn btn-primary mr-2" id="tomar-foto-btn" style="width: 100%;">
@@ -39,7 +49,7 @@
                               </svg>
                         </i>
                     </button>
-          
+
 
                     <button type="button" class="btn btn-danger" id="eliminar-foto-btn" style="display: none; width:100%;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
@@ -58,7 +68,7 @@
             <button type="submit" class="btn btn-primary" id="crear-entrega-btn" style="display: none; width: 100%;">
                 Crear Entrega
             </button>
-            
+
             <!-- Agrega el indicador de progreso aquí -->
             <div id="indicador-creacion" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                 <div class="text-center">
@@ -68,7 +78,7 @@
                 </div>
                 <p class="text-center mt-2">Creando entrega...</p>
             </div>
-            
+
         </form>
     </div>
 @endsection
@@ -77,7 +87,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    
+
     var tomarFotoBtn = document.getElementById("tomar-foto-btn");
     var eliminarFotoBtn = document.getElementById("eliminar-foto-btn");
     var fotoEntregaInput = document.getElementById("foto_entrega");
