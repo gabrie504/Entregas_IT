@@ -30,6 +30,10 @@ class PrestamoController extends EntregaController
 
         $prestamo->save();
 
-        return redirect()->route('dispositivos.mostrar');
+    /*     $id = 2;
+        return redirect()->route('dispositivos.mostrar')->with('id', $id); */
+
+        $id = 2;
+        return view('mostrarDispositivos')->with('id', $id);
     }
 }

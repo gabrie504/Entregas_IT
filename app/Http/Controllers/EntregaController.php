@@ -45,7 +45,8 @@ class EntregaController extends Controller
 
         $entrega->save();
 
-        return redirect()->route('dispositivos.mostrar');
+        $id = 1;
+        return redirect()->route('dispositivos.mostrar')->with('id', $id);
     }
 }
 

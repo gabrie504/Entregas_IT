@@ -27,7 +27,11 @@
 @section('content')
   <div class="container">
     <h1>Agregar equipos</h1>
-    <form action="{{ secure_url('/dispositivo') }}" method="POST">
+    
+
+
+<form action="{{ secure_url('/prestamodis') }}" method="POST">
+
       <div class="form-group">
         <label for="nombre">Nombre del equipo:</label>
         <input type="text" class="form-control" id="nombre" name="nombre">
@@ -161,8 +165,12 @@ $('#agregar-equipo').click(function() {
       // Mostrar el indicador de carga
       $('#indicador-creacion').show();
 
+
+      
+      
+
       $.ajax({
-        url: '{{ secure_url("/dispositivo") }}',
+        url: '{{ secure_url("/prestamodis") }}',
         type: 'POST',
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}'

@@ -8,6 +8,8 @@ use App\Http\Controllers\FirmaController;
 use App\Http\Controllers\ListaEquipoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\PrestamoController;
+use App\Http\Controllers\PrestamoDetalleController;
+
 
 
 

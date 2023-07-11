@@ -13,7 +13,7 @@ class PrestamoDetalleController extends EntrgasDetalleController
     public function store(Request $request)
     {
 
-
+        /* dd($request); */
         $equipos = $request->input('equipos');
 
         // Obtener la última entrega creada en la base de datos
@@ -47,7 +47,7 @@ class PrestamoDetalleController extends EntrgasDetalleController
                 $detallePrestamo->save();
             }
         }
-
-        return response()->json(['msj' => 'se guardo']);
+        
+        return response()->json(['msj' => 'se guardo en la tabla prestamo detalle']);
     }
 }
