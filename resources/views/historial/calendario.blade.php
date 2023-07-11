@@ -20,8 +20,8 @@
     <li  style="font-weight: bold; color: #ADD8E6;">Salidas</li>
   </ul>
 
+<div id="calendar"></div>
 
-        <div id="calendar"></div>
 @endsection
 
 
@@ -29,12 +29,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
-  
+
       var calendar = new FullCalendar.Calendar(calendarEl, {
         // Configura las opciones del calendario aquí
-      
+
       });
-  
+
       calendar.render();
     });
   </script>
