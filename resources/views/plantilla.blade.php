@@ -19,7 +19,7 @@
 
     .sidebar1 a{
   font-family: "Inter", sans-serif;
- 
+
 }
 /* ---------------------------------------- */
          .container1 {
@@ -29,7 +29,7 @@
 .sidebar1 {
   max-width: 25vh;
   width: 100%;
-  height: auto;
+  height: 100vh;
   background-color: #1967b1;
 
   transition: transform 0.3s ease-in-out;
@@ -50,7 +50,7 @@
 
 .sidebar1 ul {
   list-style: none;
-  
+
   padding: 0;
 }
 
@@ -104,7 +104,7 @@
 .logo-container {
   display: flex;
   justify-content: center;
- 
+
 
 }
 
@@ -119,7 +119,7 @@
 
 .sidebar1{
   display: none;
-  
+
 }
 
 .sidebar2{
@@ -135,7 +135,7 @@
 
 .sidebar2 a{
   font-family: "Inter", sans-serif;
- 
+
 }
 
 /* .sidebar2 li a {
@@ -183,7 +183,7 @@ margin-right: 18vw;
        {{-- BOTON PARA VERSION MOVIL --}}
        <button id="collapseButton2" class="boton2" id="boton2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"> <span class="navbar-toggler-icon"></span> </button>
 
-  
+
 
   <div class="item ms-auto">
       <ul class="nav justify-content-end">
@@ -241,11 +241,11 @@ margin-right: 18vw;
       </ul>
     </nav>
   </div>
-  
-  
+
+
 
     <div class="sidebar2">
-{{--      
+{{--
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         Button with data-bs-target
       </button>
@@ -262,7 +262,7 @@ margin-right: 18vw;
           </a>
           <nav>
             <ul class="nav flex-column">
-              <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="secure_url('/')">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="{{secure_url('/entrega1',['id' => 1])}}" >Entregas</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Prestamos</a></li>
               <li class="nav-item">
@@ -282,31 +282,27 @@ margin-right: 18vw;
       </div>
     </div>
 
-  
+
     <div class="main-content1">
-      
+
       @yield('content')
-      
-      
+
+
     </div>
-    
-    
-    
+
+
+
     @yield('aside')
-    
 
 
-      
-      
-    
+
+
+
+
 
   </div>
 
 
-
-    <footer>
-
-    </footer>
 
 
 
