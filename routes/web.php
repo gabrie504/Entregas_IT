@@ -38,9 +38,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //rutas para la creacion de una entrega
     Route::get('/entrega1/{id}', [EntregaController::class, 'index'])->name('entrega.mostrar');
     Route::POST('/entrega', [EntregaController::class, 'store'])->name('entrega.crear');
+    
 //************************************************************************************************************************** */
 //**********************************RUTAS DE CREACION DE PRESTAMOS*********************************************************** */
-Route::POST('/prestamo', [PrestamoController::class, 'store'])->name('entrega.crear');
+Route::POST('/prestamo', [PrestamoController::class, 'store'])->name('prestamo.crear');
+Route::POST('/prestamodis', [PrestamoDetalleController::class, 'store'])->name('prestamos.store');
 
 
 
