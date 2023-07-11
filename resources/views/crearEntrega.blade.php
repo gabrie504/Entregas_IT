@@ -9,10 +9,8 @@
     <div class="container">
 
 
-        @if($id == '1')
-            <form method="POST" action="{{ secure_urlgm
-
-            entrega') }}" enctype="multipart/form-data">
+        @if($id == 1)
+            <form method="POST" action="{{ secure_url('/entrega') }}" enctype="multipart/form-data">
         @elseif( $id == 2)
             <form method="POST" action="{{ secure_url('/prestamo') }}" enctype="multipart/form-data">
         @elseif( $id == 3)
