@@ -1,5 +1,5 @@
 @extends('plantilla')
-@section('cabecera')
+@section('estilos')
 
 <style>
   .ui-autocomplete {
@@ -27,8 +27,6 @@
 @section('content')
   <div class="container">
     <h1>Agregar equipos</h1>
-    
-
 
 <form action="{{ secure_url('/prestamodis') }}" method="POST">
 
@@ -85,6 +83,10 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
+
+var miVariableJS = '{{ session('id') }}';
+        console.log(miVariableJS);
+
   $(document).ready(function() {
     var equipos = [];
 
@@ -165,12 +167,21 @@ $('#agregar-equipo').click(function() {
       // Mostrar el indicador de carga
       $('#indicador-creacion').show();
 
+      var id = '{{ session('id') }}';
+      var url;
 
-      
-      
+if (id == 1) {
+    url = '{{ secure_url("/dispositivo") }}';
+} else if (id == 2) {
+    url = '{{ secure_url("/prestamodis") }}';
+} else if (id == 3) {
+    url = '{{ secure_url("/salidas") }}';
+}
+
+
 
       $.ajax({
-        url: '{{ secure_url("/prestamodis") }}',
+        url: url,
         type: 'POST',
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -179,7 +190,16 @@ $('#agregar-equipo').click(function() {
         success: function(response) {
           equipos = [];
           mostrarEquipos();
-          window.location.href = '{{ secure_url("/firma") }}';
+          if(id == 1){
+            window.location.href = "{{ secure_url('/firma', ['id' => 1]) }}";
+
+        }else if (id == 2) {
+            window.location.href = '{{ secure_url("/firma", ["id" => 2]) }}';
+          } else if(id == 3){
+            window.location.href = '{{ secure_url("/firma", ["id" => 3]) }}';
+          }else {
+            console.log("ningun id es correcto");
+          }
         },
         error: function(xhr, status, error) {
           console.log('Error al enviar equipos: ' + error);

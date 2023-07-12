@@ -40,12 +40,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //rutas para la creacion de una entrega
     Route::get('/entrega1/{id}', [EntregaController::class, 'index'])->name('entrega.mostrar');
     Route::POST('/entrega', [EntregaController::class, 'store'])->name('entrega.crear');
-    
-//************************************************************************************************************************** */
-//**********************************RUTAS DE CREACION DE PRESTAMOS*********************************************************** */
-Route::POST('/prestamo', [PrestamoController::class, 'store'])->name('prestamo.crear');
-Route::POST('/prestamodis', [PrestamoDetalleController::class, 'store'])->name('prestamos.store');
-
 
 
 
@@ -57,11 +51,18 @@ Route::POST('/prestamodis', [PrestamoDetalleController::class, 'store'])->name('
     //Route::delete('/dispositivo/{articulo}', [EntrgasDetalleController::class, 'destroy'])->name('dispositivos.destroy');
 
 
-    Route::get('/firma', [FirmaController::class, 'index'])->name('firma.mostrar');
+    Route::get('/firma/{id}', [FirmaController::class, 'index'])->name('firma.mostrar');
     Route::POST('/firma1', [FirmaController::class, 'store'])->name('firma.store');;
 
-});
+    //************************************************************************************************************************** */
+//**********************************RUTAS DE CREACION DE PRESTAMOS*********************************************************** */
 
+
+Route::POST('/prestamo', [PrestamoController::class, 'store'])->name('prestamo.crear');
+
+Route::POST('/prestamodis', [PrestamoDetalleController::class, 'store']);
+
+});
 
 
 //************************************************************************************************************************** */
