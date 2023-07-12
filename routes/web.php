@@ -9,6 +9,7 @@ use App\Http\Controllers\ListaEquipoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\PrestamoDetalleController;
+use App\Http\Controllers\FirmaPrestamoController;
 
 
 
@@ -51,7 +52,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Route::delete('/dispositivo/{articulo}', [EntrgasDetalleController::class, 'destroy'])->name('dispositivos.destroy');
 
 
-    Route::get('/firma/{id}', [FirmaController::class, 'index'])->name('firma.mostrar');
+    Route::get('/firma', [FirmaController::class, 'index'])->name('firma.mostrar');
     Route::POST('/firma1', [FirmaController::class, 'store'])->name('firma.store');;
 
     //************************************************************************************************************************** */
@@ -59,8 +60,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 Route::POST('/prestamo', [PrestamoController::class, 'store'])->name('prestamo.crear');
-
 Route::POST('/prestamodis', [PrestamoDetalleController::class, 'store']);
+Route::get('/firmacontroller', [FirmaPrestamoController::class, 'index']);
 
 });
 
