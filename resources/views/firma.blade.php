@@ -66,8 +66,14 @@
 
         @if(session('success'))
         <script>
-            alert("{{ session('success') }}");
-            window.location.href = "/historial";
+
+            @if($id = 1)
+                alert("{{ session('success') }}");
+                window.location.href = "/historial";
+            @elseif($id = 2)
+                alert("{{ session('success') }}");
+                window.location.href = "/";
+            @endif
         </script>
         @else
 

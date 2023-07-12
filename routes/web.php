@@ -62,7 +62,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::POST('/prestamo', [PrestamoController::class, 'store'])->name('prestamo.crear');
 Route::POST('/prestamodis', [PrestamoDetalleController::class, 'store']);
 Route::get('/firmacontroller', [FirmaPrestamoController::class, 'index']);
-
+Route::POST('/firmacontroller1', [FirmaPrestamoController::class, 'store']);
 });
 
 

@@ -30,4 +30,8 @@ class FirmaPrestamoController extends Controller
             'equipos' => $prestamo
         ]);
     }
+
+    public function store(){
+        
+    }
 }

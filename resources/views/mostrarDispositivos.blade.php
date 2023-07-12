@@ -191,12 +191,12 @@ if (id == 1) {
           equipos = [];
           mostrarEquipos();
           if(id == 1){
-            window.location.href = "{{ secure_url('/firma')}}";
+            window.location.href = "{{ secure_url('/firma', ['id' => 1])}}";
 
         }else if (id == 2) {
-            window.location.href = "{{ secure_url('/firmacontroller')}}";
+            window.location.href = "{{ secure_url('/firmacontroller', ['id' => 2])}}";
           } else if(id == 3){
-            window.location.href = '{{ secure_url("/firmasalida") }}';
+            window.location.href = "{{ secure_url('/firmasalida', ['id'=>3]) }}";
           }else {
             console.log("ningun id es correcto");
           }
