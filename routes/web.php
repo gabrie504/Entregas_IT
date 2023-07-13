@@ -10,6 +10,7 @@ use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\PrestamoDetalleController;
 use App\Http\Controllers\FirmaPrestamoController;
+use App\Http\Controllers\HistorialPrestamoController;
 
 
 
@@ -85,6 +86,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/historialeps' , function(){
         return view('historial.historialeps');
     });
+
+    Route::get('/historialprestamo' , [HistorialPrestamoController::class, 'index']);
+    Route::get('/historialeditprestamo/{id}', [HistorialPrestamoController::class, 'show']);
 
     Route::get('/calendario' , function(){
         return view('historial.calendario');

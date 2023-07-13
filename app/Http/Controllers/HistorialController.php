@@ -46,7 +46,6 @@ INNER JOIN personas ON personas.id_persona = detallepersonas.id_persona;
             ->distinct()
             ->paginate(15);
     
-        
         return view('historial/verHistorial', compact('entregas'));
     }
     

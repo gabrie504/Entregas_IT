@@ -23,7 +23,7 @@
         <a href=""></a>
 
 
-        <a  href="{{secure_url('/historial')}}" class="d-flex">
+        <a  href="{{secure_url('/historialprestamo')}}" class="d-flex">
             <span class="material-symbols-outlined">
                 shopping_cart_checkout
                 </span>
@@ -32,7 +32,7 @@
         
             <a href=""></a>
 
-        <a  href="{{secure_url('/historial')}}" class="d-flex">
+        <a  href="{{secure_url('/historialprestamo')}}" class="d-flex">
             <span class="material-symbols-outlined">
                 flight
                 </span>

@@ -11,7 +11,7 @@ class PersonaDetalles extends Model
 
     protected $table = 'detallepersonas';
     
-    protected $fillable = ['id_entrega' , 'id_persona' , 'firma_encargado'];
+    protected $fillable = ['id_entrega' , 'id_persona','id_prestamo' , 'firma_encargado'];
 
     public $timestamps = false;
 }

@@ -36,13 +36,13 @@
 
 
 @section('title')
-    firma
+    firma prestamo
 @endsection
 
 @section('content')
 
 <fieldset>
-    <legend style="border: 1px solid black; display: inline-block;">Informacion de la entrega</legend>
+    <legend style="border: 1px solid black; display: inline-block;">Informacion del Presrtamo</legend>
     <h3>Fecha: {{ $fecha }}</h1>
     <h3>Hora: {{ $hora }}</h2>
     <table class="equipos-table">
@@ -67,13 +67,14 @@
         @if(session('success'))
         <script>
 
+       
                 alert("{{ session('success') }}");
-                window.location.href = "/historial";
+                window.location.href = "/historialprestamo";
 
         </script>
         @else
 
-                <form  action="{{secure_url('/firma1')}}" method="POST" enctype="multipart/form-data">
+                <form  action="{{secure_url('/firmacontroller1')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Recibe:</span>
