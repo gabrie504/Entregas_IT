@@ -27,6 +27,8 @@ class PrestamoController extends EntregaController
         $prestamo->hora_entrega = $validateData['hora_entrega'];
         $prestamo->nombre_encargado = auth()->user()->name;
         $prestamo->foto_articulo = $imageName;
+        $prestamo->estado_prestamo = 0;
+            
 
         $prestamo->save();
 

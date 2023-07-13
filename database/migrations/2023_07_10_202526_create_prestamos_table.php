@@ -19,6 +19,7 @@ class CreatePrestamosTable extends Migration
             $table->string('hora_entrega');
             $table->string('nombre_encargado');
             $table->string('foto_articulo');
+            $table->int('estado_prestamo');
             $table->timestamps();
         });
     }

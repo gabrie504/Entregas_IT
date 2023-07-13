@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('id_articulo');
             $table->string('descripcion_articulo');
             $table->timestamps();
+           
             
             $table->foreign('id_prestamo')->references('id')->on('prestamos')->onDelete('cascade');
             $table->foreign('id_articulo')->references('id_articulo')->on('articulos')->onDelete('cascade');

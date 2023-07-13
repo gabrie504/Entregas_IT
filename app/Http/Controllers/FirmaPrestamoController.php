@@ -10,6 +10,8 @@ use App\Models\Articulo;
 use App\Models\DetalleArticulo;
 use App\Models\PersonaRecibe;
 use App\Models\PersonaDetalles;
+use App\Models\DetallePrestamo;
+
 
 class FirmaPrestamoController extends Controller
 {
@@ -81,7 +83,9 @@ class FirmaPrestamoController extends Controller
             $personasDetalle->firma_encargado = $filename;
             $personasDetalle->save();
         }
-    
+       
+       
+
          // Setear el mensaje de éxito en la sesión
          Session::flash('success', 'La entrega se creó con éxito');
     

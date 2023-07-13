@@ -84,8 +84,7 @@
 
 <script>
 
-var miVariableJS = '{{ session('id') }}';
-        console.log(miVariableJS);
+
 
   $(document).ready(function() {
     var equipos = [];

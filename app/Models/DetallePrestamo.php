@@ -11,7 +11,7 @@ class DetallePrestamo extends Model
 
     protected $table = 'detalleprestamos';
 
-    protected $fillable = ['id_prestamo','id_articulo', 'descripcion_articulo' ];
+    protected $fillable = ['id_prestamo','id_articulo', 'descripcion_articulo'];
 
  
 }

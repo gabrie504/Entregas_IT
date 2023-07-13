@@ -38,7 +38,7 @@
                                 </td>
 
                                 <td>
-                                    <a href="{{ secure_url('/historialeditprestamo', $prestamo->id) }}" class="btn btn-danger">Pendiente</a>
+                                    <a href="{{ secure_url('/prestamodevolucion', $prestamo->id) }}" class="btn btn-danger">Pendiente</a>
                                 </td>
                             </tr>
                             
