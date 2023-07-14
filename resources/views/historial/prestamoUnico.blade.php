@@ -24,7 +24,7 @@
                             <img src="{{ secure_asset('storage/'.$foto) }}" class="img-fluid img-thumbnail" alt="Foto del Artículo" style="max-width: 130px; margin: auto;">
 
 
-                          
+
                         </div>
                         <div class="col-md-6">
                             <table class="equipos-table  table table-light table-striped table table-responsive">
@@ -51,14 +51,15 @@
                     </div>
                     <p class="text-center">Recibio Por: {{ $recibe }}</p>
                     <p class="text-center">Entregado Por: {{ $encargado }}</p>
-
-                    <div class="text-center d-print-none">
-                        <button class="btn btn-primary" onclick="window.print()">Imprimir</button>
-                    </div>
+                    <p><strong>Se hace constar que el equipo se entrega en óptimas condiciones y ha sido revisado por quien lo recibe</strong></p>
+                    
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="text-center d-print-none">
+    <button class="btn btn-primary" onclick="window.print()">Imprimir</button>
 </div>
 @endsection
 

@@ -28,6 +28,8 @@
 
 .sidebar1 {
   max-width: 25vh;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 100vh;
   background-color: #1967b1;

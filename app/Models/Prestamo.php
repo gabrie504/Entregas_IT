@@ -15,6 +15,9 @@ class Prestamo extends Model
         'hora_entrega',
         'nombre_encargado',
         'foto_articulo',
-        'estado_prestamo'
+        'estado_prestamo',
+        'foto_devolucion',
+        'encargado_recibe',
+        'nota_devuelve'
     ];
 }

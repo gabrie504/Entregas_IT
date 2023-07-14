@@ -89,6 +89,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/historialprestamo' , [HistorialPrestamoController::class, 'index']);
     Route::get('/historialeditprestamo/{id}', [HistorialPrestamoController::class, 'show']);
+    Route::get('/cerrarprestamo/{id}', [HistorialPrestamoController::class, 'notaupdate']);
+    Route::POST('/devuelveprestamo/{id}', [HistorialPrestamoController::class, 'update']);
 
     Route::get('/calendario' , function(){
         return view('historial.calendario');

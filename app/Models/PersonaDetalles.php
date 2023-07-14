@@ -10,8 +10,14 @@ class PersonaDetalles extends Model
     use HasFactory;
 
     protected $table = 'detallepersonas';
-    
-    protected $fillable = ['id_entrega' , 'id_persona','id_prestamo' , 'firma_encargado'];
+
+    protected $fillable = ['id_entrega' ,
+                           'id_persona',
+                           'id_prestamo' ,
+                           'firma_encargado',
+                           'firma_devolucion',
+                           'nombre_devuelve'
+                        ];
 
     public $timestamps = false;
 }
