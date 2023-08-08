@@ -96,6 +96,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 
+Route::post('/webhook', [WebhookController::class , 'handle']);
 
 
 
