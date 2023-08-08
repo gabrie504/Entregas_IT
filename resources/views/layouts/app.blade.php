@@ -1,17 +1,24 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    
+
+  
     <meta charset="utf-8">
+    <link rel="manifest" crossorigin="use-credentials" href="{{secure_asset('./manifest.json')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
+     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com"> 
+    {{-- favicon --}}
+    <link rel="icon" type="image/x-icon" href="{{ secure_asset('/images/icons/icon-512x512.png') }}">
 
     <style>
         .logo {
@@ -34,7 +41,86 @@
         }
     }
         
+
+  /* Style for the install notification */
+  .install-notification {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 8px;
+        cursor: pointer;
+        animation: slide-up 0.3s ease-in-out; /* Add the animation */
+    }
+
+    /* Define the animation keyframes */
+    @keyframes slide-up {
+        from {
+            transform: translateY(100%); /* Start from below the screen */
+        }
+        to {
+            transform: translateY(0); /* Move to the top */
+        }
+    }
+
+    .install-button:hover {
+        background-color: #0056b3;
+    }
       </style>
+<script>
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the default event to prevent the automatic install prompt
+        e.preventDefault();
+
+        // Show a custom message to the user
+        const installMessage = "¡Agrega esta aplicación a tu dispositivo para acceder fácilmente!";
+
+        // Show the install prompt in a notification-like style
+        const installNotification = document.createElement('div');
+        installNotification.classList.add('install-notification'); // Add the class for the animation
+        
+        // Create a container for the message and button
+        const contentContainer = document.createElement('div');
+        contentContainer.textContent = installMessage;
+        
+        // Create the "Instalar" button with the style of btn-primary
+        const installButton = document.createElement('button');
+        installButton.textContent = 'Instalar';
+        installButton.classList.add('btn', 'btn-info'); // Add the Bootstrap classes
+
+        // Add a click event listener to the button
+        installButton.addEventListener('click', () => {
+            // Show the install prompt
+            e.prompt();
+
+            // Wait for the user to respond to the prompt
+            e.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+
+                // Remove the notification
+                installNotification.remove();
+            });
+        });
+
+        // Append the button to the content container
+        contentContainer.appendChild(installButton);
+
+        // Append the content container to the notification
+        installNotification.appendChild(contentContainer);
+
+        // Add the notification to the body of the document
+        document.body.appendChild(installNotification);
+    });
+</script>
+
+
 
 </head>
 <body>
@@ -100,5 +186,17 @@
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+              console.log('ServiceWorker registrado con éxito: ', registration.scope);
+            }, function(err) {
+              console.log('Error al registrar el ServiceWorker: ', err);
+            });
+          });
+        }
+    </script>
+    
 </body>
 </html>

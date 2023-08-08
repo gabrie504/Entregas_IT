@@ -84,7 +84,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/historial' , [HistorialController::class, 'index'])->name('historial');
     Route::get('/historialedit/{id}', [HistorialController::class, 'show']);
     Route::get('/historialeps' , function(){
-        return view('historial.historialeps');
+        return view('historial.historialEPS');
     });
 
     Route::get('/historialprestamo' , [HistorialPrestamoController::class, 'index']);
@@ -98,6 +98,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 
+Route::post('/webhook', [WebhookController::class , 'handle']);
 
 
 
