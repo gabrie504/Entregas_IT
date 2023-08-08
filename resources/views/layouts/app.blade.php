@@ -124,6 +124,7 @@
 
 </head>
 <body>
+    <h1>hola</h1>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -186,6 +187,7 @@
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', function() {
@@ -196,7 +198,8 @@
             });
           });
         }
-    </script>
+      </script>
+      
     
 </body>
 </html>

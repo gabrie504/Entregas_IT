@@ -1,6 +1,20 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+// Instalar el service worker
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open('my-cache').then((cache) => {
+      return cache.addAll([
+        // Lista de recursos que deseas precachear
+        // Por ejemplo, URLs de imágenes, CSS, JS, etc.
+      ]);
+    })
+  );
+});
 
-workbox.routing.registerRoute(
-  ({request}) => request.destination === 'image',
-  new workbox.strategies.CacheFirst()
-);
+// Manejar las solicitudes
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
+});
