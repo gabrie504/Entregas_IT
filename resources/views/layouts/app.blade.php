@@ -5,7 +5,7 @@
 
   
     <meta charset="utf-8">
-    <link rel="manifest" crossorigin="use-credentials" href="{{secure_asset('./manifest.json')}}">
+    <link rel="manifest" crossorigin="use-credentials" href="{{secure_asset('/manifest.json')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -192,7 +192,7 @@
     <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            navigator.serviceWorker.register('./sw.js').then(function(registration) {
               console.log('ServiceWorker registrado con éxito: ', registration.scope);
             }, function(err) {
               console.log('Error al registrar el ServiceWorker: ', err);
