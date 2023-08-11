@@ -19,13 +19,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    # Serve manifest.json with correct MIME type
-    RewriteRule ^manifest\.json$ /manifest.json [L]
 
 </IfModule>
 
-<IfModule mod_headers.c>
-    <FilesMatch "(sw.js|manifest.json)">
-        Header set Cache-Control "no-cache"
-    </FilesMatch>
-</IfModule>
+

@@ -188,21 +188,6 @@
             @yield('content')
         </main>
     </div>
-    <pre id="json-data">
-        Cargando JSON...
-    </pre>
-
-    <script>
-        // Realizar una petición AJAX para cargar el JSON
-        fetch('./manifest.json')
-            .then(response => response.json())
-            .then(jsonData => {
-                document.getElementById('json-data').textContent = JSON.stringify(jsonData, null, 2);
-            })
-            .catch(error => {
-                console.error('Error al cargar el JSON:', error);
-            });
-    </script>
    
    
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
