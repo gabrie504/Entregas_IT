@@ -10,7 +10,10 @@
     
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="manifest" crossorigin="use-credentials" href="{{secure_asset('/manifest.json')}}">
+{{--     <link rel="manifest" crossorigin="use-credentials" href="{{secure_asset('/manifest.json')}}">
+ --}}
+
+ <link rel="manifest" crossorigin="use-credentials" href="./manifest.json">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
