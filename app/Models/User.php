@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // User.php
+public function hasActiveSubscription()
+{
+    return $this->subscriptions()->where('active', true)->count() > 0;
+}
+
+public function subscriptions()
+{
+    return $this->hasMany(Subscription::class);
+}
+
 }

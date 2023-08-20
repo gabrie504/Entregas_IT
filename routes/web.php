@@ -11,8 +11,10 @@ use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\PrestamoDetalleController;
 use App\Http\Controllers\FirmaPrestamoController;
 use App\Http\Controllers\HistorialPrestamoController;
+use App\Http\Controllers\SubscriptionController;
 
-
+// En tu modelo Subscription o un archivo de configuración
+const PLANS = ['3_months', '6_months', '12_months'];
 
 
 /*
@@ -32,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // your authenticated routes here
     Route::get('/', function () {
         return view('principal');
-    })->name('home');
+    });
 
 
     Route::get('/prueba', function () {
@@ -87,7 +89,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('historial.historialEPS');
     });
 
-    Route::get('/historialprestamo' , [HistorialPrestamoController::class, 'index']);
+    Route::get('/E' , [HistorialPrestamoController::class, 'index']);
     Route::get('/historialeditprestamo/{id}', [HistorialPrestamoController::class, 'show']);
     Route::get('/cerrarprestamo/{id}', [HistorialPrestamoController::class, 'notaupdate']);
     Route::POST('/devuelveprestamo/{id}', [HistorialPrestamoController::class, 'update']);
@@ -95,9 +97,27 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/calendario' , function(){
         return view('historial.calendario');
     });
+
+
+    /* RUTAS PARA SUSCRIPCIONES  */
+    
+    Route::get('/subscriptions', [SubscriptionController::class, 'index'])
+        ->name('subscriptions.index');
+
+    Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])
+        ->name('subscriptions.subscribe');
+
+        /* CANCELAR SUSCRPCION */
+        Route::POST('/cancel-suscription', [SubscriptionController::class, 'cancel']);
+
+        /* RUTA PARA ACTUALIZAR LA SUSCRIPCION */
+        
+Route::get('/subscriptions/change', [SubscriptionController::class, 'showChangeSubscriptionForm'])->name('subscriptions.change');
+Route::post('/subscriptions/change', [SubscriptionController::class, 'changeSubscription'])->name('subscriptions.change.post');
 });
 
 
+/* RUTA PARA ACTUALIZAR EL REPOSITORIO EN PRODUCCION DE MANERA AUTOMATICA */
 Route::post('/webhook', [WebhookController::class , 'handle']);
 
 
@@ -116,4 +136,4 @@ Route::get('/offline', function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home1');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

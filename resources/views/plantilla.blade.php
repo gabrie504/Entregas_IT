@@ -206,16 +206,23 @@ margin-right: 18vw;
                   <form id="logout-form" action="{{ secure_url('/logout') }}" method="POST" class="d-none">
                       @csrf
                   </form>
-              </div>
+              
+                </div>
+      
+
           </li>
+          
+          
       </ul>
   </div>
 </nav>
 
 
 
+
 <div class="container1">
 
+  {{-- SIDEBAR VISIBLE DESDE DESKTOP --}}
   <div class="sidebar1">
     <a class="navbar-brand" href="{{secure_url('/')}}">
       <div class="logo-container">
@@ -224,7 +231,26 @@ margin-right: 18vw;
     </a>
     <nav>
       <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{secure_url('/')}}">Inicio</a></li>
+        <!-- Dropdown -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#historialDropdown" aria-expanded="false" aria-controls="historialDropdown">Subscripcion</a>
+          <div id="historialDropdown" class="collapse">
+            <ul class="nav flex-column">
+
+              <li class="nav-item">
+                <form id="cancel-subscription-form" action="{{ secure_url('/cancel-suscription') }}" method="POST">
+                    @csrf
+                    <button type="button" class="nav-link" style="border: none; background: none; padding: 0;" onclick="confirmCancellation()">Cancelar Suscripción</button>
+                </form>
+            </li>
+              
+              <li class="nav-item"><a class="nav-link" href="{{secure_url('/subscriptions/change')}}">Cambiar Plan</a></li>
+            </ul>
+          </div>
+        </li>
+
+
         <li class="nav-item"><a class="nav-link" href="{{secure_url('/entrega1',['id' => 1])}}" >Entregas</a></li>
         <li class="nav-item"><a class="nav-link" href="{{secure_url('/entrega1',['id' => 2])}}">Prestamos</a></li>
         <li class="nav-item"><a class="nav-link" href="{{secure_url('/entrega1',['id' => 3])}}">Salidas</a></li>
@@ -233,9 +259,9 @@ margin-right: 18vw;
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#historialDropdown" aria-expanded="false" aria-controls="historialDropdown">Historial</a>
           <div id="historialDropdown" class="collapse">
             <ul class="nav flex-column">
-              <li class="nav-item"><a class="nav-link" href="#">Entrega</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Prestamo</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Salida de Equipo</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{secure_url('/historial')}}">Entrega</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{secure_url('historialprestamo')}}">Prestamo</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{secure_url('')}}">Salida de Equipo</a></li>
             </ul>
           </div>
         </li>
@@ -309,6 +335,16 @@ margin-right: 18vw;
 
 
 @yield('scripts')
+
+
+{{-- confirmacion si se desea cancelar la subscripcion --}}
+<script>
+  function confirmCancellation() {
+      if (confirm('¿Estás seguro de que deseas cancelar la suscripción?')) {
+          document.getElementById('cancel-subscription-form').submit();
+      }
+  }
+</script>
 
     <script>
 var collapseButton = document.getElementById('collapseButton1');

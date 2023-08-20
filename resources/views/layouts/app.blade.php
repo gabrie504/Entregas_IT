@@ -19,7 +19,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com"> 
     {{-- favicon --}}
     <link rel="icon" type="image/x-icon" href="{{ secure_asset('/images/icons/icon-512x512.png') }}">
-
+    @stack('styles')
     <style>
         .logo {
           position: absolute;
@@ -132,7 +132,7 @@
             <div class="container">
                 <img  class="logo"
                  src="{{secure_asset('tvc.png')}}" alt="">
-                <a class="navbar-brand link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-block text-center" href="{{ secure_url('/') }}">
+                <a class="navbar-brand link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-block text-center etiqueta">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -178,7 +178,10 @@
                                     </form>
                                 </div>
                             </li>
+                            
+                        
                         @endguest
+                       
                     </ul>
                 </div>
             </div>
