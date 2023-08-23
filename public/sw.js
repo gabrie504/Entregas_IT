@@ -18,3 +18,16 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+
+// En tu archivo sw.js (Service Worker)
+self.addEventListener('push', event => {
+  const options = {
+    body: event.data.text(), // El cuerpo de la notificación
+    icon: '/images/icons/icon-512x512.png', // Ruta al ícono de la notificación
+  };
+
+  event.waitUntil(
+    self.registration.showNotification('Título de la notificación', options)
+  );
+});

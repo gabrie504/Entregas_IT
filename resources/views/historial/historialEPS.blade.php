@@ -46,17 +46,6 @@
                         <p>Ver en el Calendario</p>
                 </a>
             
-      <a href=""></a>
-            
-
-
-
-            
-            
-
-
-
-
-
+      
 
 @endsection

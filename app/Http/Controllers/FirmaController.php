@@ -93,7 +93,10 @@ class FirmaController extends Controller
         $personasDetalle->save();
     }
 
-    
+     // Setear el mensaje de éxito en la sesión
+     Session::flash('success', 'La entrega se creó con éxito');
+
+     return back()->with('success', 'La entrega se creó con éxito');
 
 
 }

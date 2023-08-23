@@ -45,7 +45,7 @@
                                 </td>
                             @else
                                 <td>
-                                    <a href="{{ secure_url('/historialeditprestamo', $prestamo->id) }}" class="btn btn-prymary">Devuelto</a>
+                                    <a href="{{ secure_url('/historialeditprestamo', $prestamo->id) }}" class="btn btn-primary">Devuelto</a>
                                 </td>
                             @endif
 

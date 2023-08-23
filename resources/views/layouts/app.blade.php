@@ -205,6 +205,15 @@
             });
           });
         }
+
+        if ('Notification' in window) {
+            Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log('Permiso de notificación concedido.');
+            }
+        });
+        }
+
       </script>
       
     

@@ -99,6 +99,19 @@
       </div>
     </div>
   </a>
+
+
+<a href="{{secure_url('/empleados')}}">
+  <div class="col">
+    <div class="card card-custom">
+      <img src="{{secure_asset('empleados.jpg')}}" class="card-img-top img-custom" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Gestion de Empleados</h5>
+        <p class="card-text">Modulo encargado de todas las operaciones referentes a Empleados</p>
+      </div>
+    </div>
+  </div>
+</a>
 </div>
 @endsection
 

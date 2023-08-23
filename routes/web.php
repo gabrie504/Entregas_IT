@@ -12,6 +12,7 @@ use App\Http\Controllers\PrestamoDetalleController;
 use App\Http\Controllers\FirmaPrestamoController;
 use App\Http\Controllers\HistorialPrestamoController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\EmployeeController;
 
 // En tu modelo Subscription o un archivo de configuración
 const PLANS = ['3_months', '6_months', '12_months'];
@@ -89,7 +90,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('historial.historialEPS');
     });
 
-    Route::get('/E' , [HistorialPrestamoController::class, 'index']);
+    Route::get('/historialprestamo' , [HistorialPrestamoController::class, 'index']);
     Route::get('/historialeditprestamo/{id}', [HistorialPrestamoController::class, 'show']);
     Route::get('/cerrarprestamo/{id}', [HistorialPrestamoController::class, 'notaupdate']);
     Route::POST('/devuelveprestamo/{id}', [HistorialPrestamoController::class, 'update']);
@@ -114,6 +115,26 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         
 Route::get('/subscriptions/change', [SubscriptionController::class, 'showChangeSubscriptionForm'])->name('subscriptions.change');
 Route::post('/subscriptions/change', [SubscriptionController::class, 'changeSubscription'])->name('subscriptions.change.post');
+
+
+        /* RUTAS MODULO EMPLEADOS */
+
+        Route::get('/empleados' , [EmployeeController::class, 'indexMenu']);
+        Route::get('/empleados/agregar' , [EmployeeController::class, 'index'])->name('Empleados.agregar');
+        Route::POST('/empleados/agregar' , [EmployeeController::class, 'store']);
+        Route::get('/empleados/listaEmpleados' , [EmployeeController::class, 'mostrarLista'])->name('Empleados.lista');
+        Route::delete('empleados/eliminar/{id}', [EmployeeController::class, 'destroy']);
+        Route::get('/empleados/editar/{id}', [EmployeeController::class, 'edit']);
+        Route::put('/empleados/{id}' , [EmployeeController::class, 'update']);
+       
+       
+        Route::get('/empleados/departamento', [EmployeeController::class, 'indexDepartamento']);
+        Route::get('/empleados/departamentos/agregar', [EmployeeController::class, 'agregarDepartamento']);
+        Route::POST('/empleados/departamentos/agregar' , [EmployeeController::class, 'storeDepartamento'])->name('Departamentos.agregar');
+        Route::get('/empleados/listadepartamentos' , [EmployeeController::class, 'mostrarListaDepto'])->name('Departamentos.lista');
+        Route::delete('empleados/departamentos/eliminar/{id}', [EmployeeController::class, 'destroyDepto']);
+        Route::get('/empleados/departyamentos/editar/{id}', [EmployeeController::class, 'editDepto']);
+        Route::put('/empleados/departamentos/{id}' , [EmployeeController::class, 'updateDepto']);
 });
 
 
