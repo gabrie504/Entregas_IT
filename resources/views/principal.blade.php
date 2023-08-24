@@ -93,8 +93,8 @@
       <div class="card card-custom">
         <img src="{{secure_asset('lista.jpg')}}" class="card-img-top img-custom" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Lista de Equipos</h5>
-          <p class="card-text">Lista de equipos que se han entregado al menos una vez</p>
+          <h5 class="card-title">Gestión De Inventario</h5>
+          <p class="card-text">Modulo encargado de todos los equipos del departamento</p>
         </div>
       </div>
     </div>

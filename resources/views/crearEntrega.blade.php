@@ -10,11 +10,14 @@
 
 
         @if($id == 1)
+            <h1>Creando Entrega</h1>
             <form method="POST" action="{{ secure_url('/entrega') }}" enctype="multipart/form-data">
         @elseif( $id == 2)
+        <h1>Creando Prestamo</h1>
             <form method="POST" action="{{ secure_url('/prestamo') }}" enctype="multipart/form-data">
         @elseif( $id == 3)
-            <form method="POST" action="{{ secure_url('/entrega') }}" enctype="multipart/form-data">
+        <h1>Creando Salida de equipo</h1>
+            <form method="POST" action="{{ secure_url('/prestamo') }}" enctype="multipart/form-data">
         @endif
             @csrf
 

@@ -116,6 +116,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('/subscriptions/change', [SubscriptionController::class, 'showChangeSubscriptionForm'])->name('subscriptions.change');
 Route::post('/subscriptions/change', [SubscriptionController::class, 'changeSubscription'])->name('subscriptions.change.post');
 
+        /* RUTAS MODULO INVENTARIO */
+        Route::get('/equipos' , [EmployeeController::class, 'indexMenu']);
 
         /* RUTAS MODULO EMPLEADOS */
 
@@ -135,6 +137,10 @@ Route::post('/subscriptions/change', [SubscriptionController::class, 'changeSubs
         Route::delete('empleados/departamentos/eliminar/{id}', [EmployeeController::class, 'destroyDepto']);
         Route::get('/empleados/departyamentos/editar/{id}', [EmployeeController::class, 'editDepto']);
         Route::put('/empleados/departamentos/{id}' , [EmployeeController::class, 'updateDepto']);
+
+
+
+
 });
 
 

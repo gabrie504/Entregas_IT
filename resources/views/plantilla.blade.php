@@ -261,7 +261,6 @@ margin-right: 18vw;
             <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="{{secure_url('/historial')}}">Entrega</a></li>
               <li class="nav-item"><a class="nav-link" href="{{secure_url('historialprestamo')}}">Prestamo</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{secure_url('')}}">Salida de Equipo</a></li>
             </ul>
           </div>
         </li>
@@ -273,11 +272,7 @@ margin-right: 18vw;
 
 
     <div class="sidebar2">
-{{--
-      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-        Button with data-bs-target
-      </button>
-       --}}
+
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -290,20 +285,37 @@ margin-right: 18vw;
           </a>
           <nav>
             <ul class="nav flex-column">
-              <li class="nav-item"><a class="nav-link" href="secure_url('/')">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{secure_url('/')}}">Inicio</a></li>
+              <!-- Dropdown -->
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#historialDropdown" aria-expanded="false" aria-controls="historialDropdown">Subscripcion</a>
+          <div id="historialDropdown" class="collapse">
+            <ul class="nav flex-column">
+
+              <li class="nav-item">
+                <form id="cancel-subscription-form" action="{{ secure_url('/cancel-suscription') }}" method="POST">
+                    @csrf
+                    <button type="button" class="nav-link" style="border: none; background: none; padding: 0;" onclick="confirmCancellation()">Cancelar Suscripción</button>
+                </form>
+            </li>
+              
+              <li class="nav-item"><a class="nav-link" href="{{secure_url('/subscriptions/change')}}">Cambiar Plan</a></li>
+            </ul>
+          </div>
+        </li>
               <li class="nav-item"><a class="nav-link" href="{{secure_url('/entrega1',['id' => 1])}}" >Entregas</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Prestamos</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{secure_url('/entrega1',['id' => 2])}}">Prestamos</a></li>
               <li class="nav-item">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#historialDropdown" aria-expanded="false" aria-controls="historialDropdown">Historial</a>
                 <div id="historialDropdown" class="collapse">
                   <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="#">Entrega</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Prestamo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Salida de Equipo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{secure_url('/historial')}}">Entrega</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{secure_url('/historialprestamo')}}">Prestamo</a></li>
+                 
                   </ul>
                 </div>
               </li>
-              <li class="nav-item"><a class="nav-link" href="#">Inventario</a></li>
+              <li class="nav-item"><a class="nav-link" href="/listaequipo">Inventario</a></li>
             </ul>
           </nav>
         </div>
