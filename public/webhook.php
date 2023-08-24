@@ -1,5 +1,5 @@
 <?php
-$repoPath = '/var/www/Entregas_IT'; // Ruta de tu repositorio local
+$repoPath = '/var/www/Entregas_IT/public'; // Ruta de tu repositorio local
 
 $secret = 'ELmaster120815'; // Secreto compartido con GitHub para verificar las solicitudes
 
